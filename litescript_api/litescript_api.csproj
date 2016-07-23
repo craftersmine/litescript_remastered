@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FFAD25F8-14FE-4B87-96FD-C48040837D46}</ProjectGuid>
+    <ProjectGuid>{D54516DB-2371-471D-A68A-2BFAE4FEBFA4}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>craftersmine.LiteScript.Compiler</RootNamespace>
-    <AssemblyName>lscomplib</AssemblyName>
+    <RootNamespace>craftersmine.LiteScript.Api</RootNamespace>
+    <AssemblyName>lsapilib</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,15 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandParser\Command.cs" />
-    <Compile Include="CommandParser\CommandRegistry.cs" />
-    <Compile Include="Core\CompilerCandidateFile.cs" />
-    <Compile Include="Core\CSFileBuilder.cs" />
-    <Compile Include="Core\OutputType.cs" />
-    <Compile Include="Locale\Locale.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

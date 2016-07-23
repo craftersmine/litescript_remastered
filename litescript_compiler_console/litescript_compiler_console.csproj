@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{FFAD25F8-14FE-4B87-96FD-C48040837D46}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{76450F33-55F4-4F4B-A320-342B4FA8CC33}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>craftersmine.LiteScript.Compiler</RootNamespace>
-    <AssemblyName>lscomplib</AssemblyName>
+    <RootNamespace>litescript_compiler_console</RootNamespace>
+    <AssemblyName>litescript_compiler_console</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -40,15 +42,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandParser\Command.cs" />
-    <Compile Include="CommandParser\CommandRegistry.cs" />
-    <Compile Include="Core\CompilerCandidateFile.cs" />
-    <Compile Include="Core\CSFileBuilder.cs" />
-    <Compile Include="Core\OutputType.cs" />
-    <Compile Include="Locale\Locale.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\litescript_api\litescript_api.csproj">
+      <Project>{d54516db-2371-471d-a68a-2bfae4febfa4}</Project>
+      <Name>litescript_api</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\litescript_compiler\litescript_compiler.csproj">
+      <Project>{ffad25f8-14fe-4b87-96fd-c48040837d46}</Project>
+      <Name>litescript_compiler</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

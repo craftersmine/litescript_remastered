@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace litescript_compiler
+namespace craftersmine.LiteScript.Compiler.Core
 {
-    public class Class1
+    public enum OutputType
     {
+        OnlyCompiledScript, ExtractableArchive
     }
 }

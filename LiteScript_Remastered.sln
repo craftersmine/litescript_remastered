@@ -5,6 +5,10 @@ VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "litescript_compiler", "litescript_compiler\litescript_compiler.csproj", "{FFAD25F8-14FE-4B87-96FD-C48040837D46}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "litescript_api", "litescript_api\litescript_api.csproj", "{D54516DB-2371-471D-A68A-2BFAE4FEBFA4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "litescript_compiler_console", "litescript_compiler_console\litescript_compiler_console.csproj", "{76450F33-55F4-4F4B-A320-342B4FA8CC33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{FFAD25F8-14FE-4B87-96FD-C48040837D46}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFAD25F8-14FE-4B87-96FD-C48040837D46}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FFAD25F8-14FE-4B87-96FD-C48040837D46}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D54516DB-2371-471D-A68A-2BFAE4FEBFA4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D54516DB-2371-471D-A68A-2BFAE4FEBFA4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D54516DB-2371-471D-A68A-2BFAE4FEBFA4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D54516DB-2371-471D-A68A-2BFAE4FEBFA4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{76450F33-55F4-4F4B-A320-342B4FA8CC33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{76450F33-55F4-4F4B-A320-342B4FA8CC33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{76450F33-55F4-4F4B-A320-342B4FA8CC33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{76450F33-55F4-4F4B-A320-342B4FA8CC33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
