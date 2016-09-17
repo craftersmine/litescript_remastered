@@ -14,5 +14,12 @@ namespace craftersmine.LiteScript.Compiler.CommandParser
         {
             Commands.Add(cmd);
         }
+
+        public static List<Keyword> Keywords { get; set; } = new List<Keyword>();
+
+        public static void RegisterKeyword(Keyword kwd)
+        {
+            Keywords.Add(kwd);
+        }
     }
 }

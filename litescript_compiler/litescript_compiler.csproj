@@ -41,9 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandParser\Command.cs" />
-    <Compile Include="CommandParser\CommandRegistry.cs" />
+    <Compile Include="CommandParser\Keyword.cs" />
     <Compile Include="Core\CompilerCandidateFile.cs" />
-    <Compile Include="Core\CSFileBuilder.cs" />
     <Compile Include="Core\OutputType.cs" />
     <Compile Include="Locale\Locale.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

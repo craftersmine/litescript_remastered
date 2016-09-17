@@ -7,8 +7,8 @@
     <ProjectGuid>{76450F33-55F4-4F4B-A320-342B4FA8CC33}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>litescript_compiler_console</RootNamespace>
-    <AssemblyName>litescript_compiler_console</AssemblyName>
+    <RootNamespace>craftersmine.LiteScript.Compiler</RootNamespace>
+    <AssemblyName>lscompiler</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -42,6 +42,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CommandRegistry\CommandRegistrator.cs" />
+    <Compile Include="CommandRegistry\CommandRegistry.cs" />
+    <Compile Include="CSFileBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

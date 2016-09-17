@@ -12,6 +12,7 @@ namespace craftersmine.LiteScript.Compiler.Core
         public string     FilePath   { get; set; }
         public OutputType OutType    { get; set; }
         public string[]   ReadedFile { get; set; }
+        public string     AllFile    { get; set; }
 
         public CompilerCandidateFile(string filePath, OutputType outType)
         {
@@ -21,6 +22,7 @@ namespace craftersmine.LiteScript.Compiler.Core
             try
             {
                 ReadedFile = File.ReadAllLines(FilePath);
+                AllFile = File.ReadAllText(FilePath);
             }
             catch
             {
