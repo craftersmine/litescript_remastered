@@ -66,6 +66,27 @@ namespace craftersmine.LiteScript.Ide.Core
                         OnCreationCompletedEvent(null, _occea);
                     }
                     break;
+                case CreationType.Script:
+                    string _rootDir = parentDir;
+                    _ocpcea.ProgressStyle = ProgressBarStyle.Marquee;
+                    OnCreationProgressChangedEvent(null, _ocpcea);
+                    string _fileScript = Path.Combine(_rootDir, name + ".litescript");
+                    string _fileContents1 = string.Format("Use System;\r\nUse System.IO;\r\n\r\nNamespace {0}\r\n#\r\n\tVisibility:Public StaticObj DefClass EntryPoint\r\n\t#\r\n\t\tVisibility:Public StaticObj Void Main(String[] CommandLineArguments)\r\n\t\t#\r\n\t\t\t\r\n\t\t$\r\n\t$\r\n$", name).Replace("#", "{").Replace("$", "}");
+                    try
+                    {
+                        File.WriteAllText(_fileScript, _fileContents1);
+                        _ocpcea.Progress = 100;
+                        _occea.Result = CreationResult.Success;
+                        OnCreationCompletedEvent(null, _occea);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("{ERROR_FILE_CANNOT_BE_WRITTEN}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        _ocpcea.Progress = 100;
+                        _occea.Result = CreationResult.Error;
+                        OnCreationCompletedEvent(null, _occea);
+                    }
+                    break;
             }
         }
     }
