@@ -95,8 +95,8 @@
             this.undoBtn = new System.Windows.Forms.ToolStripButton();
             this.redoBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
-            this.cutBtn = new System.Windows.Forms.ToolStripButton();
             this.copyBtn = new System.Windows.Forms.ToolStripButton();
+            this.cutBtn = new System.Windows.Forms.ToolStripButton();
             this.pasteBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.runBtn = new System.Windows.Forms.ToolStripButton();
@@ -158,26 +158,27 @@
             this.scriptNewMenu,
             this.projNewMenu});
             this.newMenu.Name = "newMenu";
-            this.newMenu.Size = new System.Drawing.Size(118, 22);
+            this.newMenu.Size = new System.Drawing.Size(152, 22);
             this.newMenu.Text = "{new}";
             // 
             // scriptNewMenu
             // 
             this.scriptNewMenu.Name = "scriptNewMenu";
-            this.scriptNewMenu.Size = new System.Drawing.Size(119, 22);
+            this.scriptNewMenu.Size = new System.Drawing.Size(152, 22);
             this.scriptNewMenu.Text = "{script}";
+            this.scriptNewMenu.Click += new System.EventHandler(this.newClicked);
             // 
             // projNewMenu
             // 
             this.projNewMenu.Name = "projNewMenu";
-            this.projNewMenu.Size = new System.Drawing.Size(119, 22);
+            this.projNewMenu.Size = new System.Drawing.Size(152, 22);
             this.projNewMenu.Text = "{project}";
             this.projNewMenu.Click += new System.EventHandler(this.newClicked);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(115, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(149, 6);
             // 
             // openMenu
             // 
@@ -185,7 +186,7 @@
             this.scriptOpenMenu,
             this.projOpenMenu});
             this.openMenu.Name = "openMenu";
-            this.openMenu.Size = new System.Drawing.Size(118, 22);
+            this.openMenu.Size = new System.Drawing.Size(152, 22);
             this.openMenu.Text = "{open}";
             // 
             // scriptOpenMenu
@@ -203,7 +204,7 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(115, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // saveMenu
             // 
@@ -222,12 +223,12 @@
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(115, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
             // closeMenu
             // 
             this.closeMenu.Name = "closeMenu";
-            this.closeMenu.Size = new System.Drawing.Size(118, 22);
+            this.closeMenu.Size = new System.Drawing.Size(152, 22);
             this.closeMenu.Text = "{close}";
             // 
             // editmenu
@@ -466,8 +467,8 @@
             // 
             this.toolStripContainer1.TopToolStripPanel.BackColor = System.Drawing.Color.White;
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip2);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip3);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip2);
             this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
             // welcomePanel
@@ -682,21 +683,11 @@
             this.copyBtn,
             this.cutBtn,
             this.pasteBtn});
-            this.toolStrip2.Location = new System.Drawing.Point(194, 0);
+            this.toolStrip2.Location = new System.Drawing.Point(136, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip2.Size = new System.Drawing.Size(81, 25);
             this.toolStrip2.TabIndex = 1;
-            // 
-            // cutBtn
-            // 
-            this.cutBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.cutBtn.Enabled = false;
-            this.cutBtn.Image = ((System.Drawing.Image)(resources.GetObject("cutBtn.Image")));
-            this.cutBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.cutBtn.Name = "cutBtn";
-            this.cutBtn.Size = new System.Drawing.Size(23, 22);
-            this.cutBtn.Text = "{cut}";
             // 
             // copyBtn
             // 
@@ -707,6 +698,16 @@
             this.copyBtn.Name = "copyBtn";
             this.copyBtn.Size = new System.Drawing.Size(23, 22);
             this.copyBtn.Text = "{copy}";
+            // 
+            // cutBtn
+            // 
+            this.cutBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.cutBtn.Enabled = false;
+            this.cutBtn.Image = ((System.Drawing.Image)(resources.GetObject("cutBtn.Image")));
+            this.cutBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.cutBtn.Name = "cutBtn";
+            this.cutBtn.Size = new System.Drawing.Size(23, 22);
+            this.cutBtn.Text = "{cut}";
             // 
             // pasteBtn
             // 
@@ -725,7 +726,7 @@
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.runBtn,
             this.buildBtn});
-            this.toolStrip3.Location = new System.Drawing.Point(136, 0);
+            this.toolStrip3.Location = new System.Drawing.Point(217, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip3.Size = new System.Drawing.Size(58, 25);
