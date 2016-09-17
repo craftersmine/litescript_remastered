@@ -60,6 +60,7 @@ namespace craftersmine.LiteScript.Ide.Core
                     }
                     catch
                     {
+                        // LOCALE: Error: file cannot be written
                         MessageBox.Show("{ERROR_FILE_CANNOT_BE_WRITTEN}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         _ocpcea.Progress = 100;
                         _occea.Result = CreationResult.Error;
@@ -81,6 +82,7 @@ namespace craftersmine.LiteScript.Ide.Core
                     }
                     catch
                     {
+                        // LOCALE: Error: file cannot be written
                         MessageBox.Show("{ERROR_FILE_CANNOT_BE_WRITTEN}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         _ocpcea.Progress = 100;
                         _occea.Result = CreationResult.Error;

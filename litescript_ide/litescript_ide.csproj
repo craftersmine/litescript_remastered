@@ -54,6 +54,8 @@
     <Compile Include="Core\Creator.cs" />
     <Compile Include="Core\Data\ProjectCreationData.cs" />
     <Compile Include="Core\Data\ScriptCreationData.cs" />
+    <Compile Include="Core\Opener.cs" />
+    <Compile Include="Core\Project.cs" />
     <Compile Include="Forms\CreateDialogs\ProjectCreateDialog.cs">
       <SubType>Form</SubType>
     </Compile>

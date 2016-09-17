@@ -18,6 +18,7 @@ namespace craftersmine.LiteScript.Ide.Forms.CreateDialogs
         {
             InitializeComponent();
             directoryPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            // LOCALE: Realize locale load for ProjectCreateDialog
         }
 
         private void ok_Click(object sender, EventArgs e)

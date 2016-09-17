@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 using System.Windows.Forms;
 using craftersmine.LiteScript.Ide.Core;
 using craftersmine.LiteScript.Ide.Forms.CreateDialogs;
@@ -15,25 +16,59 @@ namespace craftersmine.LiteScript.Ide
 {
     public partial class MainForm : Form
     {
+        public Project _currProj = null;
+        public bool _isProject = false;
+
         public MainForm()
         {
             InitializeComponent();
             Creator.OnCreationCompletedEvent += Creator_OnCreationCompletedEvent;
             Creator.OnCreationProgressChangedEvent += Creator_OnCreationProgressChangedEvent;
+            Opener.OnOpeningFileEvent += Opener_OnOpeningFileEvent;
+            Opener.OnOpenedFileEvent += Opener_OnOpenedFileEvent;
+            // LOCALE: Realize locale load for MainForm
+        }
+
+        private void Opener_OnOpenedFileEvent(object sender, OnOpenedFileEventArgs e)
+        {
+            progress.Visible = false;
+            // LOCALE: Opened proj locale
+            status.Text = "{PROJ_OPENED}";
+        }
+
+        private void Opener_OnOpeningFileEvent(object sender, OnOpeningFileEventArgs e)
+        {
+            progress.Value = e.Progress;
+            progress.Style = e.ProgressStyle;
+            // LOCALE: Opening proj locale
+            status.Text = "{PROJ_OPENING}";
         }
 
         private void Creator_OnCreationProgressChangedEvent(object sender, OnCreationProgressChangedEventArgs e)
         {
             progress.Value = e.Progress;
             progress.Style = e.ProgressStyle;
+            // LOCALE: Creating proj locale
             status.Text = "{CREATING_PROJ}";
         }
 
         private void Creator_OnCreationCompletedEvent(object sender, OnCreationCompletedEventArgs e)
         {
-            progress.Visible = false;
+            // LOCALE: Created proj locale
             status.Text = "{PROJ_CREATED}";
             // TODO: Realize after-creation open
+            if (_isProject)
+            {
+                string _filenameCtor = ProjectCreationData.ProjectName + ".lsproj";
+                string _projFCtor = Path.Combine(ProjectCreationData.ProjectDir, _filenameCtor);
+                Opener.OpenProject(_projFCtor);
+            }
+            else
+            {
+                string _filenameCtor = ScriptCreationData.Name + ".litescript";
+                string _projFCtor = Path.Combine(ScriptCreationData.Directory, _filenameCtor);
+                Opener.OpenScript(_projFCtor);
+            }
         }
 
         private void newClicked(object sender, EventArgs e)
@@ -71,6 +106,7 @@ namespace craftersmine.LiteScript.Ide
                             saveBtn.Enabled = true;
                             progress.Visible = true;
                             Creator.Create(ProjectCreationData.ProjCreationType, ProjectCreationData.ProjectDir, ProjectCreationData.ProjectName);
+                            _isProject = true;
                             break;
                         case DialogResult.Cancel:
                             welcomePanel.Visible = true;
