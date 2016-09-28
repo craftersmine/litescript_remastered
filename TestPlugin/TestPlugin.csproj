@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D54516DB-2371-471D-A68A-2BFAE4FEBFA4}</ProjectGuid>
+    <ProjectGuid>{3D44532F-34FF-453F-A0EC-25DC113AFE11}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>craftersmine.LiteScript.Api</RootNamespace>
-    <AssemblyName>lsapilib</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>TestPlugin</RootNamespace>
+    <AssemblyName>TestPlugin</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,14 +30,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="localizerlib">
-      <HintPath>..\..\..\VS\craftersmine\Localizer\Localizer\bin\Release\localizerlib.dll</HintPath>
-    </Reference>
-    <Reference Include="nini-1.1">
-      <HintPath>..\litescript_ide\bin\Debug\nini-1.1.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -47,13 +42,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IIdeHost.cs" />
-    <Compile Include="IIdePlugin.cs" />
-    <Compile Include="Logger.cs" />
-    <Compile Include="PluginDataRoot.cs" />
-    <Compile Include="PluginLocaleProvider.cs" />
-    <Compile Include="PluginResources.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\litescript_api\litescript_api.csproj">
+      <Project>{d54516db-2371-471d-a68a-2bfae4febfa4}</Project>
+      <Name>litescript_api</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

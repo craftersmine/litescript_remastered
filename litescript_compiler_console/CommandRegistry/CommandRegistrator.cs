@@ -29,6 +29,7 @@ namespace craftersmine.LiteScript.Compiler.Init
             CommandRegistry.RegisterKeyword(new Keyword("long", "Long"));
             CommandRegistry.RegisterKeyword(new Keyword("char", "Character"));
             CommandRegistry.RegisterKeyword(new Keyword("object", "Object"));
+            CommandRegistry.RegisterKeyword(new Keyword("var", "Variable"));
 
             CommandRegistry.RegisterKeyword(new Keyword("sealed", "NonInheritable"));
             CommandRegistry.RegisterKeyword(new Keyword("abstract", "Abstract"));
@@ -60,6 +61,8 @@ namespace craftersmine.LiteScript.Compiler.Init
             CommandRegistry.RegisterKeyword(new Keyword("continue", "Continue"));
 
             CommandRegistry.RegisterKeyword(new Keyword("return", "Return"));
+            CommandRegistry.RegisterKeyword(new Keyword("event", "Event"));
+            CommandRegistry.RegisterKeyword(new Keyword("null", "NullValue"));
         }
     }
 }

@@ -34,9 +34,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="localizerlib">
+      <HintPath>..\..\..\VS\craftersmine\Localizer\Localizer\bin\Release\localizerlib.dll</HintPath>
+    </Reference>
     <Reference Include="nini-1.1, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\nini-1.1.dll</HintPath>
+    </Reference>
+    <Reference Include="syntax-hl-lib, Version=2.16.18.1, Culture=neutral, PublicKeyToken=fb8aa12b994ef61b, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\syntax-hl-lib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -51,11 +58,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\Builder.cs" />
     <Compile Include="Core\Creator.cs" />
     <Compile Include="Core\Data\ProjectCreationData.cs" />
     <Compile Include="Core\Data\ScriptCreationData.cs" />
+    <Compile Include="Core\Data\StaticData.cs" />
+    <Compile Include="Core\DebugLogger.cs" />
     <Compile Include="Core\Opener.cs" />
+    <Compile Include="Core\PluginLoader.cs" />
     <Compile Include="Core\Project.cs" />
+    <Compile Include="Core\Saver.cs" />
+    <Compile Include="Forms\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CreateDialogs\ProjectCreateDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,6 +86,18 @@
     <Compile Include="Forms\CreateDialogs\ScriptCreateDialog.Designer.cs">
       <DependentUpon>ScriptCreateDialog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\ErrorList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ErrorList.Designer.cs">
+      <DependentUpon>ErrorList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\PluginManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\PluginManager.Designer.cs">
+      <DependentUpon>PluginManager.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,11 +106,20 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateDialogs\ProjectCreateDialog.resx">
       <DependentUpon>ProjectCreateDialog.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateDialogs\ScriptCreateDialog.resx">
       <DependentUpon>ScriptCreateDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\ErrorList.resx">
+      <DependentUpon>ErrorList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\PluginManager.resx">
+      <DependentUpon>PluginManager.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>

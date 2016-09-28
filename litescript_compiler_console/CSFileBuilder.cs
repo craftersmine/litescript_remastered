@@ -29,12 +29,12 @@ namespace craftersmine.LiteScript.Compiler.Core
             CandidateFile.AllFile = CandidateFile.AllFile.Replace("#", "//");
             try
             {
-                string pathCtor = Path.GetDirectoryName(CandidateFile.FilePath) + "build\\";
+                string pathCtor = Path.GetDirectoryName(CandidateFile.FilePath) + "\\build\\";
                 Directory.CreateDirectory(pathCtor);
                 File.WriteAllText(
                     pathCtor + 
                         Path.GetFileName(CandidateFile.FilePath)
-                        .Replace("lscript", "cs"),
+                        .Replace("litescript", "cs"),
                     CandidateFile.AllFile);
             }
             catch

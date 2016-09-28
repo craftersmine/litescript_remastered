@@ -26,9 +26,7 @@ namespace craftersmine.LiteScript.Compiler.Core
             }
             catch
             {
-                string val = "";
-                Locale lc = new Locale("Russian");
-                lc.LocaleKeyPair.TryGetValue("Compiler.Loader.Error.UnableLoadFile", out val);
+                string val = " Unable to load file {file} cause unknown error";
                 Console.WriteLine(val.Replace("{file}", FilePath));
             }
         }

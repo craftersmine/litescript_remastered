@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 using Nini.Ini;
+using craftersmine.LiteScript.Ide.Core.Data;
 
 namespace craftersmine.LiteScript.Ide.Core
 {
@@ -22,7 +23,7 @@ namespace craftersmine.LiteScript.Ide.Core
         public static event OnOpeningFileDelegate OnOpeningFileEvent;
         public static event OnOpenedFileDelegate OnOpenedFileEvent;
 
-        public static Project OpenProject(string projFile)
+        public static void OpenProject(string projFile)
         {
             OnOpeningFileEventArgs _oofea = new OnOpeningFileEventArgs();
             OnOpenedFileEventArgs _oodfea = new OnOpenedFileEventArgs();
@@ -49,16 +50,14 @@ namespace craftersmine.LiteScript.Ide.Core
                 string _fContents = File.ReadAllText(_fileCtor);
                 _proj.FileContents = _fContents;
                 _oodfea.Result = OpenResult.Success;
+                _oodfea.ProjectFile = _proj;
                 OnOpenedFileEvent(null, _oodfea);
-                return _proj;
             }
             catch
             {
-                // LOCALE: Error: with file load
                 _oodfea.Result = OpenResult.Error;
                 OnOpenedFileEvent(null, _oodfea);
-                MessageBox.Show("{ERROR_WITH_FILE_LOAD}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return null;
+                MessageBox.Show(StaticData.LocaleProv.GetValue("messages.errors.io-file-load-error"), StaticData.LocaleProv.GetValue("messages.titles.error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -77,8 +76,7 @@ namespace craftersmine.LiteScript.Ide.Core
             }
             catch
             {
-                // LOCALE: Error: with file load
-                MessageBox.Show("{ERROR_WITH_FILE_LOAD}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(StaticData.LocaleProv.GetValue("messages.errors.io-file-load-error"), StaticData.LocaleProv.GetValue("messages.titles.error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 _oodfea.Result = OpenResult.Error;
                 OnOpenedFileEvent(null, _oodfea);
                 return null;
@@ -89,6 +87,7 @@ namespace craftersmine.LiteScript.Ide.Core
     public sealed class OnOpenedFileEventArgs
     {
         public Opener.OpenResult Result { get; set; }
+        public Project ProjectFile { get; set; }
     }
 
     public sealed class OnOpeningFileEventArgs

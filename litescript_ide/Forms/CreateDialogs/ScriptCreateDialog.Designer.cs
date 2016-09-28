@@ -41,15 +41,18 @@
             // cancel
             // 
             this.cancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.cancel.Location = new System.Drawing.Point(311, 209);
+            this.cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.cancel.Location = new System.Drawing.Point(284, 209);
             this.cancel.Name = "cancel";
-            this.cancel.Size = new System.Drawing.Size(75, 23);
+            this.cancel.Size = new System.Drawing.Size(102, 23);
             this.cancel.TabIndex = 17;
             this.cancel.Text = "{cancel}";
             this.cancel.UseVisualStyleBackColor = true;
+            this.cancel.Click += new System.EventHandler(this.cancel_Click);
             // 
             // ok
             // 
+            this.ok.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.ok.Location = new System.Drawing.Point(392, 209);
             this.ok.Name = "ok";
             this.ok.Size = new System.Drawing.Size(170, 23);
@@ -77,9 +80,10 @@
             // 
             // browse
             // 
-            this.browse.Location = new System.Drawing.Point(487, 42);
+            this.browse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.browse.Location = new System.Drawing.Point(453, 42);
             this.browse.Name = "browse";
-            this.browse.Size = new System.Drawing.Size(75, 23);
+            this.browse.Size = new System.Drawing.Size(109, 23);
             this.browse.TabIndex = 12;
             this.browse.Text = "{browse}";
             this.browse.UseVisualStyleBackColor = true;
@@ -88,7 +92,7 @@
             // 
             this.directoryPath.Location = new System.Drawing.Point(99, 44);
             this.directoryPath.Name = "directoryPath";
-            this.directoryPath.Size = new System.Drawing.Size(380, 20);
+            this.directoryPath.Size = new System.Drawing.Size(348, 20);
             this.directoryPath.TabIndex = 11;
             // 
             // dirTip
@@ -122,7 +126,11 @@
             this.Controls.Add(this.directoryPath);
             this.Controls.Add(this.dirTip);
             this.Controls.Add(this.tip);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "ScriptCreateDialog";
+            this.ShowInTaskbar = false;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "ScriptCreateDialog";
             this.ResumeLayout(false);
             this.PerformLayout();

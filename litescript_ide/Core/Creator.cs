@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using craftersmine.LiteScript.Ide.Core.Data;
 
 namespace craftersmine.LiteScript.Ide.Core
 {
@@ -60,8 +61,7 @@ namespace craftersmine.LiteScript.Ide.Core
                     }
                     catch
                     {
-                        // LOCALE: Error: file cannot be written
-                        MessageBox.Show("{ERROR_FILE_CANNOT_BE_WRITTEN}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(StaticData.LocaleProv.GetValue("messages.errors.io-file-cannot-be-written"), StaticData.LocaleProv.GetValue("messages.titles.error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         _ocpcea.Progress = 100;
                         _occea.Result = CreationResult.Error;
                         OnCreationCompletedEvent(null, _occea);
@@ -82,8 +82,7 @@ namespace craftersmine.LiteScript.Ide.Core
                     }
                     catch
                     {
-                        // LOCALE: Error: file cannot be written
-                        MessageBox.Show("{ERROR_FILE_CANNOT_BE_WRITTEN}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(StaticData.LocaleProv.GetValue("messages.errors.io-file-cannot-be-written"), StaticData.LocaleProv.GetValue("messages.titles.error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                         _ocpcea.Progress = 100;
                         _occea.Result = CreationResult.Error;
                         OnCreationCompletedEvent(null, _occea);

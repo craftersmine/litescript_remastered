@@ -18,7 +18,17 @@ namespace craftersmine.LiteScript.Ide.Forms.CreateDialogs
         {
             InitializeComponent();
             directoryPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            // LOCALE: Realize locale load for ProjectCreateDialog
+            Text = StaticData.LocaleProv.GetValue("forms.create.project.title");
+            tip.Text = StaticData.LocaleProv.GetValue("forms.create.project.controls.tip");
+            dirTip.Text = StaticData.LocaleProv.GetValue("forms.create.project.controls.label.directory");
+            browse.Text = StaticData.LocaleProv.GetValue("forms.create.project.controls.button.browse");
+            projnameTip.Text = StaticData.LocaleProv.GetValue("forms.create.project.controls.label.project-name");
+            projnameBox.Text = StaticData.LocaleProv.GetValue("forms.create.project.controls.textbox.project-unnamed");
+            cancel.Text = StaticData.LocaleProv.GetValue("forms.create.project.controls.button.cancel");
+            ok.Text = StaticData.LocaleProv.GetValue("forms.create.project.controls.button.ok");
+            ok.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\ok.png");
+            cancel.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\cancel.png");
+            browse.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\browse.png");
         }
 
         private void ok_Click(object sender, EventArgs e)
