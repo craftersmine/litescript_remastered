@@ -37,6 +37,11 @@ namespace craftersmine.LiteScript.Api
         Version Version { get; }
 
         /// <summary>
+        /// Description of plugin
+        /// </summary>
+        string Description { get; }
+
+        /// <summary>
         /// Calls at IDE start. Can used for load settings, initialize objects, etc
         /// </summary>
         void OnStart();

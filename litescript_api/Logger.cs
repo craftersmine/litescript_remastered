@@ -14,7 +14,7 @@ namespace craftersmine.LiteScript.Api
 
         public Logger(string name)
         {
-            string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScript IDE", "Logs");
+            string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScriptIDE", "Logs");
             if (!Directory.Exists(directory))
                 Directory.CreateDirectory(directory);
             if (DateTime.Now.Hour.ToString().Length < 2)
