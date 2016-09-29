@@ -23,7 +23,7 @@ namespace craftersmine.LiteScript.Ide.Forms.CreateDialogs
             browse.Text = StaticData.LocaleProv.GetValue("forms.create.script.controls.button.browse");
             projnameTip.Text = StaticData.LocaleProv.GetValue("forms.create.script.controls.label.script-name");
             projnameBox.Text = StaticData.LocaleProv.GetValue("forms.create.script.controls.textbox.script-unnamed");
-            cancel.Text = StaticData.LocaleProv.GetValue("forms.create.script.controls.button.cancel");
+            cancel.Text = StaticData.LocaleProv.GetValue("forms.common.button.cancel");
             ok.Text = StaticData.LocaleProv.GetValue("forms.create.script.controls.button.ok");
             ok.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\ok.png");
             cancel.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\cancel.png");

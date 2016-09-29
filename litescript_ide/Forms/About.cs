@@ -16,7 +16,7 @@ namespace craftersmine.LiteScript.Ide.Forms
         {
             InitializeComponent();
             button1.Text = Core.Data.StaticData.LocaleProv.GetValue("forms.common.button.ok");
-            button2.Text = Core.Data.StaticData.LocaleProv.GetValue("forms.about.button.checkupdates");
+            button2.Text = Core.Data.StaticData.LocaleProv.GetValue("forms.common.button.checkupdates");
             button2.Image = Image.FromFile(Core.Data.StaticData.AppRoot + "res\\iconsets\\" + Core.Data.StaticData.AppSettings.IconSet + "\\checkupdates.png");
             button1.Image = Image.FromFile(Core.Data.StaticData.AppRoot + "res\\iconsets\\" + Core.Data.StaticData.AppSettings.IconSet + "\\ok.png");
             Text = Core.Data.StaticData.LocaleProv.GetValue("forms.about.title");
