@@ -15,6 +15,7 @@ namespace TestPlugin
         public string Site { get { return "http://example.com"; } }
         public string Author { get { return "craftersmine"; } }
         public Version Version { get { return new Version(1, 0, 0); } }
+        public string Description { get { return "Test plugin!"; } }
 
         private Logger _logger;
         private ToolStrip _toolbox;
@@ -33,6 +34,7 @@ namespace TestPlugin
             _menu.Text = "plugin1menu";
             _menu.DropDownItems.Add("1");
             _menu.DropDownItems.Add("2");
+            throw new Exception();
         }
 
         private void Main_Click(object sender, EventArgs e)
