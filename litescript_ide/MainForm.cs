@@ -696,8 +696,8 @@ namespace craftersmine.LiteScript.Ide
         {
             DebugLogger.Write("PLGLDR\\INFO", "Loading plugins...");
             _pl = new PluginLoader();
-            _pl.ScanPlugins(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScript IDE", "Plugins"));
-            StaticData.Plugins = new List<IIdePlugin>();
+            _pl.ScanPlugins(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScriptIDE", "Plugins"));
+            StaticData.Plugins = new Dictionary<bool, IIdePlugin>();
 
             if (_pl.Plugins.Count < 1)
             {
@@ -707,26 +707,53 @@ namespace craftersmine.LiteScript.Ide
             foreach (var plugin in _pl.Plugins)
             {
                 DebugLogger.Write("PLGLDR\\INFO", "Loading plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
-                plugin.OnStart();
-                StaticData.Plugins.Add(plugin);
+                try
+                {
+                    plugin.OnStart();
+                    StaticData.Plugins.Add(true, plugin);
+                    DebugLogger.Write("PLGLDR\\FINE", "Loaded plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
+                }
+                catch
+                {
+                    StaticData.Plugins.Add(false, plugin);
+                    DebugLogger.Write("PLGLDR\\SEVERE", "Failed to load plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
+                }
             }
         }
 
         public void RunPlugins()
         {
-            foreach (var plugin in _pl.Plugins)
+            foreach (var plugin in StaticData.Plugins)
             {
-                DebugLogger.Write("PLGLDR\\INFO", "Running plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
-                plugin.OnRunning(this);
+                if (plugin.Key)
+                    try
+                    {
+                        DebugLogger.Write("PLGLDR\\INFO", "Activating plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
+                        plugin.Value.OnRunning(this);
+                        DebugLogger.Write("PLGLDR\\FINE", "Activated plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
+                    }
+                    catch
+                    {
+                        DebugLogger.Write("PLGLDR\\SEVERE", "Failed to activate plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
+                    }
             }
         }
 
         public void StopPlugins()
         {
-            foreach (var plugin in _pl.Plugins)
+            foreach (var plugin in StaticData.Plugins)
             {
-                DebugLogger.Write("PLGLDR\\INFO", "Stopping plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
-                plugin.OnStop();
+                if (plugin.Key)
+                    try
+                    {
+                        DebugLogger.Write("PLGLDR\\INFO", "Stopping plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
+                        plugin.Value.OnStop();
+                        DebugLogger.Write("PLGLDR\\FINE", "Stopped plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
+                    }
+                    catch
+                    {
+                        DebugLogger.Write("PLGLDR\\SEVERE", "Failed to stop plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString() + " Plugin data may be corrupted!");
+                    }
             }
         }
 
@@ -734,7 +761,8 @@ namespace craftersmine.LiteScript.Ide
 
         private void pluginMngrMenu_Click(object sender, EventArgs e)
         {
-
+            PluginManager pm = new PluginManager();
+            pm.ShowDialog();
         }
 
         private void errorlist_Click(object sender, EventArgs e)

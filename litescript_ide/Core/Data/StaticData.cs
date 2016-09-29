@@ -13,6 +13,6 @@ namespace craftersmine.LiteScript.Ide.Core.Data
         public static string AppRoot { get; set; }
         internal static Properties.Settings AppSettings { get; set; }
         public static LocalizationProvider LocaleProv { get; set; }
-        public static List<IIdePlugin> Plugins { get; set; }
+        public static Dictionary<bool, IIdePlugin> Plugins { get; set; }
     }
 }
