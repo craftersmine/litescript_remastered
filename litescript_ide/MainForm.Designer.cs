@@ -524,6 +524,7 @@
             this.editorBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.editorBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.editorBox.FoldingIndicatorColor = System.Drawing.Color.CornflowerBlue;
+            this.editorBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.editorBox.IsReplaceMode = false;
             this.editorBox.Location = new System.Drawing.Point(0, 0);
             this.editorBox.Name = "editorBox";
@@ -858,7 +859,7 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "MainForm";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainForm_FormClosing);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
