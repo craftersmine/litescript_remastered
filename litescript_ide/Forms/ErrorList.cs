@@ -18,6 +18,7 @@ namespace craftersmine.LiteScript.Ide.Forms
             InitializeComponent();
             foreach (var err in errors)
             {
+                // d:\TestProjects\ProjSaveTest\build\ProjSaveTest.cs(10,17): warning CS0219: Переменной "_var" присвоено значение, но оно ни разу не использовалось
                 string[] ln_splt = err.Split(':');
                 string[] err_id = ln_splt[2].Split(' ');
                 string desc = ln_splt[3].Substring(1);

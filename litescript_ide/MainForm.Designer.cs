@@ -524,7 +524,6 @@
             this.editorBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.editorBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.editorBox.FoldingIndicatorColor = System.Drawing.Color.CornflowerBlue;
-            this.editorBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.editorBox.IsReplaceMode = false;
             this.editorBox.Location = new System.Drawing.Point(0, 0);
             this.editorBox.Name = "editorBox";

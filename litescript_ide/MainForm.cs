@@ -18,11 +18,11 @@ namespace craftersmine.LiteScript.Ide
 {
     public partial class MainForm : Form, IIdeHost
     {
-        public Project _currProj = null;
+        public Core.Project _currProj = null;
         public bool _isProject = false;
         public bool _isNeededClosed = false;
         public bool _isProjectOrScriptLoaded = false;
-        public Project _projToSave = null;
+        public Core.Project _projToSave = null;
         public string _scriptPath = "";
         public List<string> _latestErrs = new List<string>();
         public PluginLoader _pl;
@@ -177,7 +177,7 @@ namespace craftersmine.LiteScript.Ide
                 case "projNewMenu":
                     ProjectCreateDialog pcd = new ProjectCreateDialog();
                     var dlg = pcd.ShowDialog();
-                    switch(dlg)
+                    switch (dlg)
                     {
                         case DialogResult.OK:
                             welcomePanel.Visible = false;
@@ -207,7 +207,7 @@ namespace craftersmine.LiteScript.Ide
                     progress.Visible = true;
                     _isProject = true;
                     Creator.Create(ProjectCreationData.ProjCreationType, ProjectCreationData.ProjectDir, ProjectCreationData.ProjectName);
-                    
+
                     break;
                 case DialogResult.Cancel:
                     break;
@@ -537,15 +537,17 @@ namespace craftersmine.LiteScript.Ide
 
         private void runBtn_Click(object sender, EventArgs e)
         {
+            _latestErrs.Clear();
             saveClicked(null, e);
             Builder.RunBuild(_currProj.ProjRoot + "\\" + _currProj.ProjName + ".litescript", true);
         }
 
         private void buildBtn_Click(object sender, EventArgs e)
         {
+            _latestErrs.Clear();
             saveClicked(null, e);
             Builder.RunBuild(_currProj.ProjRoot + "\\" + _currProj.ProjName + ".litescript", false);
-            
+
         }
 
         private void LoadLocales()
@@ -567,7 +569,7 @@ namespace craftersmine.LiteScript.Ide
 
             // Save
             saveMenu.Text = StaticData.LocaleProv.GetValue("forms.main.controls.save");
-            
+
             // Close
             closeMenu.Text = StaticData.LocaleProv.GetValue("forms.main.controls.close");
             #endregion
@@ -579,12 +581,12 @@ namespace craftersmine.LiteScript.Ide
             // Undo/redo
             undoMenu.Text = StaticData.LocaleProv.GetValue("forms.main.controls.undo");
             redoMenu.Text = StaticData.LocaleProv.GetValue("forms.main.controls.redo");
-            
+
             // Clipboard operations
             cutMenu.Text = StaticData.LocaleProv.GetValue("forms.main.controls.cut");
             copyMenu.Text = StaticData.LocaleProv.GetValue("forms.main.controls.copy");
             pasteMenu.Text = StaticData.LocaleProv.GetValue("forms.main.controls.paste");
-            
+
             // Delete
             deleteMenu.Text = StaticData.LocaleProv.GetValue("forms.main.controls.delete");
 
@@ -600,7 +602,7 @@ namespace craftersmine.LiteScript.Ide
 
             // Root
             scriptmenu.Text = StaticData.LocaleProv.GetValue("forms.main.controls.menu.script");
-            
+
             // Run/Build
             runMenu.Text = StaticData.LocaleProv.GetValue("forms.main.controls.run");
             buildMenu.Text = StaticData.LocaleProv.GetValue("forms.main.controls.build");
@@ -681,6 +683,8 @@ namespace craftersmine.LiteScript.Ide
 
         public void AddToolBar(ToolStrip toolbar)
         {
+            toolbar.RenderMode = ToolStripRenderMode.System;
+            toolbar.BackColor = Color.White;
             if (toolStripContainer1.InvokeRequired)
                 toolStripContainer1.Invoke(new Action(() => { toolStripContainer1.TopToolStripPanel.Controls.Add(toolbar); }));
             else toolStripContainer1.TopToolStripPanel.Controls.Add(toolbar);
@@ -690,6 +694,32 @@ namespace craftersmine.LiteScript.Ide
         {
             statusbar.Text = status;
         }
+
+        public void SetEditorContent(string content)
+        {
+            editorBox.Text = content;
+        }
+
+        public string GetEditorContent()
+        {
+            return editorBox.Text;
+        }
+
+        public void ReplaceEditorContent(string from, string to)
+        {
+            editorBox.Text = editorBox.Text.Replace(from, to);
+        }
+
+        public void GotoLine(int line)
+        {
+            editorBox.Navigate(line - 1);
+        }
+
+        public Api.Project CurrentProject { get { return new Api.Project() {
+            FileContents = _currProj.FileContents,
+            ProjName = _currProj.ProjName,
+            ProjRoot = _currProj.ProjRoot
+        }; } }
 
         // Run, load, stop
         public void LoadPlugins()
