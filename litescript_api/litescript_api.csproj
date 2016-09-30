@@ -47,12 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CurrentIDEProject.cs" />
     <Compile Include="IIdeHost.cs" />
     <Compile Include="IIdePlugin.cs" />
     <Compile Include="Logger.cs" />
-    <Compile Include="PluginDataRoot.cs" />
-    <Compile Include="PluginLocaleProvider.cs" />
-    <Compile Include="PluginResources.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

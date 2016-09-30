@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace craftersmine.LiteScript.Api
 {
-    class PluginDataRoot
+    public class Project
     {
+        public string FileContents { get; set; }
+        public string ProjRoot { get; set; }
+        public string ProjName { get; set; }
     }
 }

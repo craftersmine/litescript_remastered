@@ -28,5 +28,13 @@ namespace craftersmine.LiteScript.Api
         /// </summary>
         /// <param name="status">Text of new status value</param>
         void ChangeStatus(string status);
+
+        string GetEditorContent();
+        void SetEditorContent(string content);
+        void ReplaceEditorContent(string from, string to);
+
+        void GotoLine(int line);
+
+        Project CurrentProject { get; }
     }
 }
