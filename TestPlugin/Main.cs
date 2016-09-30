@@ -21,6 +21,7 @@ namespace TestPlugin
         private ToolStrip _toolbox;
         private ToolStripMenuItem _menu;
         public IIdeHost _wnd;
+        public static int ln = 0;
 
         public void OnStart()
         {
@@ -32,14 +33,27 @@ namespace TestPlugin
             _toolbox.Items.Add(_btn);
             _menu = new ToolStripMenuItem();
             _menu.Text = "plugin1menu";
-            _menu.DropDownItems.Add("1");
+            ToolStripMenuItem _1item = new ToolStripMenuItem("1");
+            _1item.Click += _1item_Click;
+            _menu.DropDownItems.Add(_1item);
             _menu.DropDownItems.Add("2");
-            throw new Exception();
+        }
+
+        private void _1item_Click(object sender, EventArgs e)
+        {
+            _wnd.ChangeStatus("Current project is " + _wnd.CurrentProject.ProjName);
         }
 
         private void Main_Click(object sender, EventArgs e)
         {
-            _wnd.ChangeStatus("button clicked");
+            var dlg = new Form1().ShowDialog();
+            switch(dlg)
+            {
+                case DialogResult.OK:
+                    _wnd.GotoLine(ln);
+                    _wnd.ChangeStatus("Line changed!");
+                    break;
+            }
         }
 
         public void OnRunning(IIdeHost appWindow)
