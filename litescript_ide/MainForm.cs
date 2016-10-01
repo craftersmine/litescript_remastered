@@ -43,6 +43,7 @@ namespace craftersmine.LiteScript.Ide
             // LOCALE: Realize locale load for MainForm
             LoadLocales();
             RunPlugins();
+            LoadIconset();
         }
 
         private void Builder_OnBuildRunningEvent(object sender, OnBuildRunningEventArgs e)
@@ -64,6 +65,7 @@ namespace craftersmine.LiteScript.Ide
                     break;
                 case Builder.BuildResult.Success:
                     statusbar.Text = StaticData.LocaleProv.GetValue("forms.main.status.build-success");
+                    _latestErrs = e.ErrorAndWarningList;
                     break;
             }
         }
@@ -886,6 +888,100 @@ namespace craftersmine.LiteScript.Ide
         private void downldCenterWebMenu_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("http://litescript.hol.es/download-center.html");
+        }
+
+        private void LoadIconset()
+        {
+            try
+            {
+                #region =============== File menu =================
+                // New
+                newMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\new.png");
+                projNewMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\newproj.png");
+                scriptNewMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\newscript.png");
+
+                // Open
+                openMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\open.png");
+
+                // Save
+                saveMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\save.png");
+
+                // Close
+                closeMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\close.png");
+                #endregion
+                #region =============== Edit menu =================
+
+                // Undo/redo
+                undoMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\undo.png");
+                redoMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\redo.png");
+
+                // Clipboard operations
+                cutMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\cut.png");
+                copyMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\copy.png");
+                pasteMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\paste.png");
+
+                // Delete
+                deleteMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\delete.png");
+
+                // Selection/Clearing all
+                selAllMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\selall.png");
+                clearAll.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\clearall.png");
+
+                // Search
+                findMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\find.png");
+                replMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\replace.png");
+                #endregion
+                #region ============== Script menu ================
+
+                // Run/Build
+                runMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\run.png");
+                buildMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\build.png");
+
+                // Error list
+                errorlist.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\errorlist.png");
+                #endregion
+                #region ============== Service menu ===============
+
+                // Service items
+                ideSetupMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\settings.png");
+                pluginMngrMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\pluginmngr.png");
+                downloadCenter.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\dwnldcnt.png");
+                #endregion
+                #region =============== Help menu =================
+
+                // About/Site
+                aboutMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\about.png");
+                ideSiteMenu.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\site.png");
+                #endregion
+                #region ================= Links ===================
+
+                //openLink.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\32\\open.png");
+                //newLink.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\32\\newproj.png");
+                //docLink.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\32\\doc.png");
+                //webLink.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\32\\site.png");
+
+                #endregion
+                #region ================ Buttons ==================
+
+                openBtn.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\open.png");
+                saveBtn.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\save.png");
+
+                undoBtn.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\undo.png");
+                redoBtn.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\redo.png");
+
+                copyBtn.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\copy.png");
+                cutBtn.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\cut.png");
+                pasteBtn.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\paste.png");
+
+                runBtn.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\run.png");
+                buildBtn.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\build.png");
+
+                #endregion
+            }
+            catch
+            {
+
+            }
         }
     }
 }
