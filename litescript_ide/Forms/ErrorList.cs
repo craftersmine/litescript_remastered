@@ -18,17 +18,22 @@ namespace craftersmine.LiteScript.Ide.Forms
             InitializeComponent();
             foreach (var err in errors)
             {
-                // d:\TestProjects\ProjSaveTest\build\ProjSaveTest.cs(10,17): warning CS0219: Переменной "_var" присвоено значение, но оно ни разу не использовалось
+                // d|\TestProjects\ProjSaveTest\build\ProjSaveTest.cs(10,17)| warning CS0219| Переменной "_var" присвоено значение, но оно ни разу не использовалось
                 string[] ln_splt = err.Split(':');
                 string[] err_id = ln_splt[2].Split(' ');
                 string desc = ln_splt[3].Substring(1);
                 const int errIcnId = 0;
                 const int warnIcnId = 1;
                 int id = 0;
-                if (err_id[2].Contains("error"))
-                    id = errIcnId;
-                else if (err_id[2].Contains("warning"))
-                    id = warnIcnId;
+                switch(err_id[1])
+                {
+                    case "warning":
+                        id = warnIcnId;
+                        break;
+                    case "error":
+                        id = errIcnId;
+                        break;
+                }
                 listView1.Items.Add(new ListViewItem(new string[] { "", err_id[2], desc }, id));
             }
             tip.Text = StaticData.LocaleProv.GetValue("forms.errorlist.controls.tip");
