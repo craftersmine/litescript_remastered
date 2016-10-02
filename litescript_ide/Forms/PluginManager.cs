@@ -78,22 +78,25 @@ namespace craftersmine.LiteScript.Ide.Forms
             }
             catch
             {
-
+                // OutOfRangeException suppressing
             }
         }
 
         private void deleteplg_Click(object sender, EventArgs e)
         {
-            try
-            {
-                string filepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScriptIDE\\Plugins", _selectedPlg.Id + ".dll");
-                File.Delete(filepath);
-                list.Items.Remove(new ListViewItem(new string[] { null, _selectedPlg.Name, _selectedPlg.Version.ToString() }));
-            }
-            catch
-            {
-                
-            }
+            MessageBox.Show("This ability is not realized yet, but you can manage plugins at %AppData%\\LiteScriptIDE\\Plugins", "Warning!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+
+
+            //try
+            //{
+            //    string filepath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScriptIDE\\Plugins", _selectedPlg.Id + ".dll");
+            //    File.Delete(filepath);
+            //    list.Items.Remove(new ListViewItem(new string[] { null, _selectedPlg.Name, _selectedPlg.Version.ToString() }));
+            //}
+            //catch (FileNotFoundException)
+            //{
+            //    //MessageBox.Show("{ERROR_WITH_PLUGIN_DELETION}");
+            //}
         }
     }
 }
