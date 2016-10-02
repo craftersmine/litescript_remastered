@@ -980,7 +980,7 @@ namespace craftersmine.LiteScript.Ide
             }
             catch
             {
-
+                statusbar.Text = "Ошибка при загрузке набора иконок! Некоторые иконки не будут отображены!";
             }
         }
     }

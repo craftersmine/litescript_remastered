@@ -469,7 +469,7 @@
             // 
             this.toolStripContainer1.ContentPanel.Controls.Add(this.editorPanel);
             this.toolStripContainer1.ContentPanel.Controls.Add(this.welcomePanel);
-            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1091, 635);
+            this.toolStripContainer1.ContentPanel.Size = new System.Drawing.Size(1091, 660);
             this.toolStripContainer1.LeftToolStripPanelVisible = false;
             this.toolStripContainer1.Location = new System.Drawing.Point(0, 23);
             this.toolStripContainer1.Name = "toolStripContainer1";
@@ -481,9 +481,9 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             this.toolStripContainer1.TopToolStripPanel.BackColor = System.Drawing.Color.White;
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip3);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip2);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip3);
             this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
             // editorPanel
@@ -495,7 +495,7 @@
             this.editorPanel.Controls.Add(this.editorBox);
             this.editorPanel.Location = new System.Drawing.Point(0, 0);
             this.editorPanel.Name = "editorPanel";
-            this.editorPanel.Size = new System.Drawing.Size(1091, 685);
+            this.editorPanel.Size = new System.Drawing.Size(1091, 710);
             this.editorPanel.TabIndex = 2;
             this.editorPanel.Visible = false;
             // 
@@ -524,7 +524,6 @@
             this.editorBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.editorBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.editorBox.FoldingIndicatorColor = System.Drawing.Color.CornflowerBlue;
-            this.editorBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.editorBox.IsReplaceMode = false;
             this.editorBox.Location = new System.Drawing.Point(0, 0);
             this.editorBox.Name = "editorBox";
@@ -532,7 +531,7 @@
             this.editorBox.Paddings = new System.Windows.Forms.Padding(0);
             this.editorBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(30)))), ((int)(((byte)(144)))), ((int)(((byte)(255)))));
             this.editorBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("editorBox.ServiceColors")));
-            this.editorBox.Size = new System.Drawing.Size(1091, 685);
+            this.editorBox.Size = new System.Drawing.Size(1091, 710);
             this.editorBox.TabIndex = 0;
             this.editorBox.Zoom = 100;
             // 
@@ -553,7 +552,7 @@
             this.welcomePanel.Controls.Add(this.openLink);
             this.welcomePanel.Location = new System.Drawing.Point(0, 0);
             this.welcomePanel.Name = "welcomePanel";
-            this.welcomePanel.Size = new System.Drawing.Size(1091, 685);
+            this.welcomePanel.Size = new System.Drawing.Size(1091, 710);
             this.welcomePanel.TabIndex = 0;
             // 
             // webLink
@@ -674,7 +673,7 @@
             this.toolStripSeparator1,
             this.undoBtn,
             this.redoBtn});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 25);
+            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip1.Size = new System.Drawing.Size(110, 25);
@@ -736,7 +735,7 @@
             this.copyBtn,
             this.cutBtn,
             this.pasteBtn});
-            this.toolStrip2.Location = new System.Drawing.Point(113, 25);
+            this.toolStrip2.Location = new System.Drawing.Point(113, 0);
             this.toolStrip2.Name = "toolStrip2";
             this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip2.Size = new System.Drawing.Size(81, 25);
@@ -782,7 +781,7 @@
             this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.runBtn,
             this.buildBtn});
-            this.toolStrip3.Location = new System.Drawing.Point(62, 0);
+            this.toolStrip3.Location = new System.Drawing.Point(194, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStrip3.Size = new System.Drawing.Size(88, 25);
