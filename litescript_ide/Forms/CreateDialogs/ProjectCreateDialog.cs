@@ -17,7 +17,7 @@ namespace craftersmine.LiteScript.Ide.Forms.CreateDialogs
         public ProjectCreateDialog()
         {
             InitializeComponent();
-            directoryPath.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            directoryPath.Text = StaticData.AppSettings.ProjectsPath;
             Text = StaticData.LocaleProv.GetValue("forms.create.project.title");
             tip.Text = StaticData.LocaleProv.GetValue("forms.create.project.controls.tip");
             dirTip.Text = StaticData.LocaleProv.GetValue("forms.create.project.controls.label.directory");
