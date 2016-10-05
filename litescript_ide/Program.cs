@@ -37,6 +37,7 @@ namespace craftersmine.LiteScript.Ide
                 {
                     Directory.CreateDirectory(Path.Combine(StaticData.AppData, "Logs"));
                     Directory.CreateDirectory(Path.Combine(StaticData.AppData, "Plugins"));
+                    Directory.CreateDirectory(Path.Combine(StaticData.AppData, "Plugins\\Installer"));
                 }
                 DebugLogger.Write("INFO", "Loading localization provider...");
                 StaticData.LocaleProv = new LocalizationProvider(StaticData.AppRoot + "\\Locales\\" + StaticData.AppSettings.Locale + ".lang");
