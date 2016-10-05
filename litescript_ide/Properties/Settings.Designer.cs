@@ -46,5 +46,17 @@ namespace craftersmine.LiteScript.Ide.Properties {
                 this["IconSet"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string ProjectsPath {
+            get {
+                return ((string)(this["ProjectsPath"]));
+            }
+            set {
+                this["ProjectsPath"] = value;
+            }
+        }
     }
 }
