@@ -866,7 +866,8 @@ namespace craftersmine.LiteScript.Ide
 
         private void ideSetupMenu_Click(object sender, EventArgs e)
         {
-
+            Settings st = new Settings();
+            st.ShowDialog();
         }
 
         private void aboutMenu_Click(object sender, EventArgs e)

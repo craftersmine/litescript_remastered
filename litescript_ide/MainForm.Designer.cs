@@ -87,6 +87,9 @@
             this.newLink = new System.Windows.Forms.LinkLabel();
             this.open24 = new System.Windows.Forms.PictureBox();
             this.openLink = new System.Windows.Forms.LinkLabel();
+            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this.runBtn = new System.Windows.Forms.ToolStripButton();
+            this.buildBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.openBtn = new System.Windows.Forms.ToolStripButton();
             this.saveBtn = new System.Windows.Forms.ToolStripButton();
@@ -97,9 +100,6 @@
             this.copyBtn = new System.Windows.Forms.ToolStripButton();
             this.cutBtn = new System.Windows.Forms.ToolStripButton();
             this.pasteBtn = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
-            this.runBtn = new System.Windows.Forms.ToolStripButton();
-            this.buildBtn = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.statusbar = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
@@ -116,9 +116,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.doc24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.new24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.open24)).BeginInit();
+            this.toolStrip3.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.toolStrip2.SuspendLayout();
-            this.toolStrip3.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -481,9 +481,9 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             this.toolStripContainer1.TopToolStripPanel.BackColor = System.Drawing.Color.White;
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip3);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
             this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip2);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip3);
             this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
             // editorPanel
@@ -524,6 +524,7 @@
             this.editorBox.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.editorBox.DisabledColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))), ((int)(((byte)(180)))));
             this.editorBox.FoldingIndicatorColor = System.Drawing.Color.CornflowerBlue;
+            this.editorBox.Font = new System.Drawing.Font("Courier New", 9.75F);
             this.editorBox.IsReplaceMode = false;
             this.editorBox.Location = new System.Drawing.Point(0, 0);
             this.editorBox.Name = "editorBox";
@@ -663,6 +664,40 @@
             this.openLink.VisitedLinkColor = System.Drawing.Color.RoyalBlue;
             this.openLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.openLink_LinkClicked);
             // 
+            // toolStrip3
+            // 
+            this.toolStrip3.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.None;
+            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.runBtn,
+            this.buildBtn});
+            this.toolStrip3.Location = new System.Drawing.Point(194, 0);
+            this.toolStrip3.Name = "toolStrip3";
+            this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStrip3.Size = new System.Drawing.Size(88, 25);
+            this.toolStrip3.TabIndex = 2;
+            // 
+            // runBtn
+            // 
+            this.runBtn.Enabled = false;
+            this.runBtn.Image = ((System.Drawing.Image)(resources.GetObject("runBtn.Image")));
+            this.runBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.runBtn.Name = "runBtn";
+            this.runBtn.Size = new System.Drawing.Size(53, 22);
+            this.runBtn.Text = "{run}";
+            this.runBtn.Click += new System.EventHandler(this.runBtn_Click);
+            // 
+            // buildBtn
+            // 
+            this.buildBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.buildBtn.Enabled = false;
+            this.buildBtn.Image = ((System.Drawing.Image)(resources.GetObject("buildBtn.Image")));
+            this.buildBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.buildBtn.Name = "buildBtn";
+            this.buildBtn.Size = new System.Drawing.Size(23, 22);
+            this.buildBtn.Text = "{build}";
+            this.buildBtn.Click += new System.EventHandler(this.buildBtn_Click);
+            // 
             // toolStrip1
             // 
             this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
@@ -774,40 +809,6 @@
             this.pasteBtn.Text = "{paste}";
             this.pasteBtn.Click += new System.EventHandler(this.pasteMenu_Click);
             // 
-            // toolStrip3
-            // 
-            this.toolStrip3.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.runBtn,
-            this.buildBtn});
-            this.toolStrip3.Location = new System.Drawing.Point(194, 0);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip3.Size = new System.Drawing.Size(88, 25);
-            this.toolStrip3.TabIndex = 2;
-            // 
-            // runBtn
-            // 
-            this.runBtn.Enabled = false;
-            this.runBtn.Image = ((System.Drawing.Image)(resources.GetObject("runBtn.Image")));
-            this.runBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.runBtn.Name = "runBtn";
-            this.runBtn.Size = new System.Drawing.Size(53, 22);
-            this.runBtn.Text = "{run}";
-            this.runBtn.Click += new System.EventHandler(this.runBtn_Click);
-            // 
-            // buildBtn
-            // 
-            this.buildBtn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.buildBtn.Enabled = false;
-            this.buildBtn.Image = ((System.Drawing.Image)(resources.GetObject("buildBtn.Image")));
-            this.buildBtn.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.buildBtn.Name = "buildBtn";
-            this.buildBtn.Size = new System.Drawing.Size(23, 22);
-            this.buildBtn.Text = "{build}";
-            this.buildBtn.Click += new System.EventHandler(this.buildBtn_Click);
-            // 
             // statusStrip1
             // 
             this.statusStrip1.BackColor = System.Drawing.Color.White;
@@ -875,12 +876,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.doc24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.new24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.open24)).EndInit();
+            this.toolStrip3.ResumeLayout(false);
+            this.toolStrip3.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
             this.toolStrip2.ResumeLayout(false);
             this.toolStrip2.PerformLayout();
-            this.toolStrip3.ResumeLayout(false);
-            this.toolStrip3.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
