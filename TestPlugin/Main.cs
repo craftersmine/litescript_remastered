@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using craftersmine.LiteScript.Api;
 using System.Windows.Forms;
+using System.Drawing;
 
 namespace TestPlugin
 {
@@ -22,13 +23,23 @@ namespace TestPlugin
         private ToolStripMenuItem _menu;
         public IIdeHost _wnd;
         public static int ln = 0;
+        private ResourceManager _resmngr;
 
         public void OnStart()
         {
+            _resmngr = new ResourceManager(this.Id);
             _logger = new Logger("plugin1");
             _logger.Log("INFO", "Plugin 1 is loading...");
             _toolbox = new ToolStrip();
             ToolStripButton _btn = new ToolStripButton("button1");
+            Image _img = null;
+            if (_resmngr.TryGetResourceAsImage("ok", out _img))
+            {
+                _btn.Image = _img;
+                _logger.Log("FINE", "Fine loaded image");
+            }
+            else _logger.Log("WARN", "Cant load image!");
+            
             _btn.Click += Main_Click;
             _toolbox.Items.Add(_btn);
             _menu = new ToolStripMenuItem();
@@ -63,6 +74,11 @@ namespace TestPlugin
             _wnd.AddMenuEntry(_menu);
             _wnd.AddToolBar(_toolbox);
             _wnd.ChangeStatus("Plugin 1 loaded!");
+            string _text = "";
+            if (_resmngr.TryGetResourceAsString("Data", out _text))
+                _logger.Log("INFO", _text);
+            if (_resmngr.TryGetResourceAsString("DataTest", out _text))
+                _logger.Log("INFO", _text);
         }
 
         public void OnStop()
