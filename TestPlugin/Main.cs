@@ -24,30 +24,13 @@ namespace TestPlugin
         public IIdeHost _wnd;
         public static int ln = 0;
         private ResourceManager _resmngr;
+        private LocaleProvider _lprov;
 
         public void OnStart()
         {
-            _resmngr = new ResourceManager(this.Id);
             _logger = new Logger("plugin1");
-            _logger.Log("INFO", "Plugin 1 is loading...");
-            _toolbox = new ToolStrip();
-            ToolStripButton _btn = new ToolStripButton("button1");
-            Image _img = null;
-            if (_resmngr.TryGetResourceAsImage("ok", out _img))
-            {
-                _btn.Image = _img;
-                _logger.Log("FINE", "Fine loaded image");
-            }
-            else _logger.Log("WARN", "Cant load image!");
+            _resmngr = new ResourceManager(this.Id);
             
-            _btn.Click += Main_Click;
-            _toolbox.Items.Add(_btn);
-            _menu = new ToolStripMenuItem();
-            _menu.Text = "plugin1menu";
-            ToolStripMenuItem _1item = new ToolStripMenuItem("1");
-            _1item.Click += _1item_Click;
-            _menu.DropDownItems.Add(_1item);
-            _menu.DropDownItems.Add("2");
         }
 
         private void _1item_Click(object sender, EventArgs e)
@@ -69,8 +52,37 @@ namespace TestPlugin
 
         public void OnRunning(IIdeHost appWindow)
         {
-            _logger.Log("INFO", "Plugin 1 loaded!");
             _wnd = appWindow;
+            try
+            {
+                _lprov = new LocaleProvider(Id, _wnd.CurrentIdeLocale);
+            }
+            catch
+            {
+                _logger.Log("WARN", "Cant load locales!");
+            }
+            
+
+            _toolbox = new ToolStrip();
+            ToolStripButton _btn = new ToolStripButton(_lprov.GetValue("button"));
+            Image _img = null;
+            if (_resmngr.TryGetResourceAsImage("ok", out _img))
+            {
+                _btn.Image = _img;
+                _logger.Log("FINE", "Fine loaded image");
+            }
+            else _logger.Log("WARN", "Cant load image!");
+
+            _btn.Click += Main_Click;
+            _toolbox.Items.Add(_btn);
+            _menu = new ToolStripMenuItem();
+            _menu.Text = "plugin1menu";
+            ToolStripMenuItem _1item = new ToolStripMenuItem(_lprov.GetValue("1"));
+            _1item.Click += _1item_Click;
+            _menu.DropDownItems.Add(_1item);
+            _menu.DropDownItems.Add(_lprov.GetValue("2"));
+
+            
             _wnd.AddMenuEntry(_menu);
             _wnd.AddToolBar(_toolbox);
             _wnd.ChangeStatus("Plugin 1 loaded!");
@@ -79,6 +91,7 @@ namespace TestPlugin
                 _logger.Log("INFO", _text);
             if (_resmngr.TryGetResourceAsString("DataTest", out _text))
                 _logger.Log("INFO", _text);
+            _logger.Log("INFO", "Plugin 1 loaded!");
         }
 
         public void OnStop()
