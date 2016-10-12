@@ -723,6 +723,8 @@ namespace craftersmine.LiteScript.Ide
             ProjRoot = _currProj.ProjRoot
         }; } }
 
+        public string CurrentIdeLocale { get { return StaticData.AppSettings.Locale; } }
+
         // Run, load, stop
         public void LoadPlugins()
         {

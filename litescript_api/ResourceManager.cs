@@ -9,9 +9,9 @@ namespace craftersmine.LiteScript.Api
 	public sealed class ResourceManager
 	{
         private Logger _resLogger;
-        public string PluginID { get; set; }
-		public Dictionary<string, byte[]> Resources { get; set; } = new Dictionary<string, byte[]>();
-		public string ResourcesRoot { get; set; }
+        public string PluginID { get; private set; }
+		public Dictionary<string, byte[]> Resources { get; private set; } = new Dictionary<string, byte[]>();
+		public string ResourcesRoot { get; private set; }
 		
 		public ResourceManager(string pluginId)
 		{

@@ -36,5 +36,6 @@ namespace craftersmine.LiteScript.Api
         void GotoLine(int line);
 
         Project CurrentProject { get; }
+        string CurrentIdeLocale { get; }
     }
 }
