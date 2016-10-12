@@ -51,6 +51,7 @@
     <Compile Include="CurrentIDEProject.cs" />
     <Compile Include="IIdeHost.cs" />
     <Compile Include="IIdePlugin.cs" />
+    <Compile Include="LocaleProvider.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResourceManager.cs" />
