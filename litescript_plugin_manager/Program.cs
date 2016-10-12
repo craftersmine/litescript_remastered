@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,6 +17,9 @@ namespace craftersmine.LiteScript.Ide.PluginManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            StaticData.AppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScriptIDE");
+            StaticData.InstallerDir = Path.Combine(StaticData.AppData, "Plugins\\Installer");
+            StaticData.PluginsDir = Path.Combine(StaticData.AppData, "Plugins");
             Dictionary<string, string> _args = new Dictionary<string, string>();
             foreach(var arg in args)
             {
@@ -25,13 +29,19 @@ namespace craftersmine.LiteScript.Ide.PluginManager
                 if (_arg[0] == "-id")
                     _args.Add("id", _arg[1]);
             }
-            if (_args["do"] != string.Empty && _args["id"] != string.Empty)
+            try
             {
-                if (_args["do"].ToLower() == "install")
-                    Application.Run(new Install(_args["id"]));
-                if (_args["do"].ToLower() == "remove")
-                    Application.Run(new Remove(_args["id"]));
+                if (_args["do"] != string.Empty || _args["id"] != string.Empty)
+                {
+                    if (_args["do"].ToLower() == "install")
+                        Application.Run(new Install(_args["id"]));
+                    if (_args["do"].ToLower() == "remove")
+                        Application.Run(new Remove(_args["id"]));
+                }
+                else { MessageBox.Show("{YOU_NOT_SET_ARGS}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error); Environment.Exit(0); }
             }
+            catch
+            { MessageBox.Show("{YOU_NOT_SET_ARGS}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error); Environment.Exit(0); }
         }
     }
 }

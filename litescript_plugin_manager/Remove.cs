@@ -12,7 +12,7 @@ namespace craftersmine.LiteScript.Ide.PluginManager
 {
     public partial class Remove : Form
     {
-        public Remove()
+        public Remove(string id)
         {
             InitializeComponent();
         }
