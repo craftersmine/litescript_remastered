@@ -77,5 +77,10 @@ namespace craftersmine.LiteScript.Ide.Forms
             StaticData.AppSettings.Save();
             this.Close();
         }
+
+        private void cancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
