@@ -35,8 +35,8 @@
             this.status = new System.Windows.Forms.Label();
             this.progress = new System.Windows.Forms.ProgressBar();
             this.license = new System.Windows.Forms.Panel();
-            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.acceptAgreement = new System.Windows.Forms.CheckBox();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.license.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -108,16 +108,6 @@
             this.license.TabIndex = 6;
             this.license.Visible = false;
             // 
-            // richTextBox1
-            // 
-            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.richTextBox1.Location = new System.Drawing.Point(3, 3);
-            this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.ReadOnly = true;
-            this.richTextBox1.Size = new System.Drawing.Size(420, 277);
-            this.richTextBox1.TabIndex = 0;
-            this.richTextBox1.Text = "";
-            // 
             // acceptAgreement
             // 
             this.acceptAgreement.AutoSize = true;
@@ -127,6 +117,17 @@
             this.acceptAgreement.TabIndex = 1;
             this.acceptAgreement.Text = "{acceptLicenseAgreement}";
             this.acceptAgreement.UseVisualStyleBackColor = true;
+            this.acceptAgreement.CheckedChanged += new System.EventHandler(this.acceptAgreement_CheckedChanged);
+            // 
+            // richTextBox1
+            // 
+            this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.richTextBox1.Location = new System.Drawing.Point(3, 3);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(420, 277);
+            this.richTextBox1.TabIndex = 0;
+            this.richTextBox1.Text = "";
             // 
             // Install
             // 

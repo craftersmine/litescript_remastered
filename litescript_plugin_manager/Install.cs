@@ -9,16 +9,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
+using ICSharpCode.SharpZipLib.Core;
 
 namespace craftersmine.LiteScript.Ide.PluginManager
 {
     public partial class Install : Form
     {
         public string plgid;
-        public enum Stage { Extracting, LicenseAgreement, Install, Cancel }
+        public enum Stage { Extracting, LicenseAgreement, Install, End, Cancel }
         public Stage stg = Stage.Extracting;
         public string plgInstallerDir;
         public bool _isCloseNeeded = false;
+        ZipFile zip;
 
         public Install(string plgId)
         {
@@ -26,6 +28,7 @@ namespace craftersmine.LiteScript.Ide.PluginManager
             plgid = plgId;
             plgInstallerDir = Path.Combine(StaticData.InstallerDir, plgid);
             stg = Stage.Extracting;
+            zip = new ZipFile(Path.Combine(StaticData.InstallerDir, plgid + ".lsxpkg"));
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -37,7 +40,7 @@ namespace craftersmine.LiteScript.Ide.PluginManager
                     status.Visible = true;
                     status.Text = "{EXTRACTING_PLG_PKG}";
                     progress.Value = 25;
-                    FastZip _fz = new FastZip();
+                    //FastZip _fz = new FastZip();
                     try
                     {
                         Directory.CreateDirectory(plgInstallerDir);
@@ -47,44 +50,17 @@ namespace craftersmine.LiteScript.Ide.PluginManager
                         MessageBox.Show("{UNABLE_EXTRACT_PLG}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         Environment.Exit(0);
                     }
-                    _fz.ExtractZip(Path.Combine(StaticData.InstallerDir, plgid + ".lsxpkg"), plgInstallerDir, null);
-                    richTextBox1.LoadFile(Path.Combine(plgInstallerDir, "LICENSE"), RichTextBoxStreamType.PlainText);
-                    ok.Enabled = true;
+                    //_fz.ExtractZip(Path.Combine(StaticData.InstallerDir, plgid + ".lsxpkg"), StaticData.PluginsDir, null);
+                    richTextBox1.LoadFile(Path.Combine(StaticData.PluginsDir, "LICENSE"), RichTextBoxStreamType.PlainText);
                     license.Visible = true;
+                    stg = Stage.LicenseAgreement;
+
                     break;
                 case Stage.LicenseAgreement:
-                    if (acceptAgreement.Checked)
-                    {
-                        ok.Enabled = false;
-                        cancel.Enabled = false;
-                        license.Visible = false;
-                        progress.Value = 50;
-                        stg = Stage.Install;
-                    }
-                    else
-                    {
-                        ok.Enabled = false;
-                        cancel.Enabled = true;
-                        license.Visible = false;
-                        progress.Visible = false;
-                        status.Text = "{LICENSE_DISAGREED}";
-                        stg = Stage.Cancel;
-                    }
                     break;
-                case Stage.Install:
-                    try
-                    {
-                        File.Move(Path.Combine(plgInstallerDir, plgid + ".dll"), Path.Combine(StaticData.PluginsDir, plgid + ".dll"));
-                        progress.Value = 75;
-                        progress.Visible = false;
-                        status.Text = "{PLUGIN_INSTALLED_SUCCESSFUL}";
-                    }
-                    catch
-                    {
-                        progress.Value = 75;
-                        progress.Visible = false;
-                        status.Text = "{ERROR_WHILE_PLUGIN_INSTALL}";
-                    }
+                case Stage.End:
+                    string licensepath = Path.Combine(StaticData.PluginsDir, "LICENSE");
+                    File.Move(licensepath, Path.Combine(StaticData.PluginsDir, plgid + "_LICENSE"));
                     break;
             }
         }
@@ -116,6 +92,28 @@ namespace craftersmine.LiteScript.Ide.PluginManager
                 }
             }
             else Environment.Exit(0);
+        }
+
+        private void acceptAgreement_CheckedChanged(object sender, EventArgs e)
+        {
+            if (acceptAgreement.Checked)
+            {
+                ok.Enabled = false;
+                cancel.Enabled = false;
+                license.Visible = false;
+                progress.Value = 50;
+                stg = Stage.End;
+                button1_Click(null, null);
+            }
+            else
+            {
+                ok.Enabled = false;
+                cancel.Enabled = true;
+                license.Visible = false;
+                progress.Visible = false;
+                status.Text = "{LICENSE_DISAGREED}";
+                stg = Stage.Cancel;
+            }
         }
     }
 }

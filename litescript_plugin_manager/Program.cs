@@ -40,8 +40,10 @@ namespace craftersmine.LiteScript.Ide.PluginManager
                 }
                 else { MessageBox.Show("{YOU_NOT_SET_ARGS}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error); Environment.Exit(0); }
             }
-            catch
-            { MessageBox.Show("{YOU_NOT_SET_ARGS}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error); Environment.Exit(0); }
+            catch (Exception ex)
+            { //MessageBox.Show("{YOU_NOT_SET_ARGS}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error); Environment.Exit(0);
+                throw ex;
+            }
         }
     }
 }

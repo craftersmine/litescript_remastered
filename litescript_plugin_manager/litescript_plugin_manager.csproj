@@ -37,7 +37,8 @@
     <Reference Include="localizerlib">
       <HintPath>..\..\..\VS\craftersmine\Localizer\Localizer\bin\Release\localizerlib.dll</HintPath>
     </Reference>
-    <Reference Include="sharpziplib">
+    <Reference Include="sharpziplib, Version=0.86.0.518, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\sharpziplib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
