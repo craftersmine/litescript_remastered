@@ -100,6 +100,7 @@
             // 
             // license
             // 
+            this.license.BackColor = System.Drawing.Color.White;
             this.license.Controls.Add(this.acceptAgreement);
             this.license.Controls.Add(this.richTextBox1);
             this.license.Location = new System.Drawing.Point(12, 60);
@@ -111,7 +112,7 @@
             // acceptAgreement
             // 
             this.acceptAgreement.AutoSize = true;
-            this.acceptAgreement.Location = new System.Drawing.Point(3, 285);
+            this.acceptAgreement.Location = new System.Drawing.Point(3, 283);
             this.acceptAgreement.Name = "acceptAgreement";
             this.acceptAgreement.Size = new System.Drawing.Size(155, 17);
             this.acceptAgreement.TabIndex = 1;
@@ -121,6 +122,7 @@
             // 
             // richTextBox1
             // 
+            this.richTextBox1.BackColor = System.Drawing.Color.White;
             this.richTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.richTextBox1.Location = new System.Drawing.Point(3, 3);
             this.richTextBox1.Name = "richTextBox1";
@@ -134,13 +136,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(450, 406);
-            this.Controls.Add(this.license);
             this.Controls.Add(this.progress);
             this.Controls.Add(this.status);
             this.Controls.Add(this.plugin_name);
             this.Controls.Add(this.tip);
             this.Controls.Add(this.cancel);
             this.Controls.Add(this.ok);
+            this.Controls.Add(this.license);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Install";

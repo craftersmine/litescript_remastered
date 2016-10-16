@@ -10,59 +10,33 @@ using System.Windows.Forms;
 using System.IO;
 using ICSharpCode.SharpZipLib.Zip;
 using ICSharpCode.SharpZipLib.Core;
+using Nini.Ini;
 
 namespace craftersmine.LiteScript.Ide.PluginManager
 {
     public partial class Install : Form
     {
         public string plgid;
-        public enum Stage { Extracting, LicenseAgreement, Install, End, Cancel }
+        public string filepath;
+        public enum Stage { Extracting, LicenseAgreement, LicenseAgreed, LicenseDisagreed, Install, End, Cancel, Close }
         public Stage stg = Stage.Extracting;
         public string plgInstallerDir;
         public bool _isCloseNeeded = false;
-        ZipFile zip;
+        public IniDocument _packagecontents_file;
+        public bool _isValid_packageContents = true;
 
-        public Install(string plgId)
+        public Install(string file)
         {
             InitializeComponent();
-            plgid = plgId;
+            filepath = file;
+            plgid = Path.GetFileNameWithoutExtension(file);
             plgInstallerDir = Path.Combine(StaticData.InstallerDir, plgid);
             stg = Stage.Extracting;
-            zip = new ZipFile(Path.Combine(StaticData.InstallerDir, plgid + ".lsxpkg"));
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
-            switch(stg)
-            {
-                case Stage.Extracting:
-                    progress.Visible = true;
-                    status.Visible = true;
-                    status.Text = "{EXTRACTING_PLG_PKG}";
-                    progress.Value = 25;
-                    //FastZip _fz = new FastZip();
-                    try
-                    {
-                        Directory.CreateDirectory(plgInstallerDir);
-                    }
-                    catch
-                    {
-                        MessageBox.Show("{UNABLE_EXTRACT_PLG}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        Environment.Exit(0);
-                    }
-                    //_fz.ExtractZip(Path.Combine(StaticData.InstallerDir, plgid + ".lsxpkg"), StaticData.PluginsDir, null);
-                    richTextBox1.LoadFile(Path.Combine(StaticData.PluginsDir, "LICENSE"), RichTextBoxStreamType.PlainText);
-                    license.Visible = true;
-                    stg = Stage.LicenseAgreement;
-
-                    break;
-                case Stage.LicenseAgreement:
-                    break;
-                case Stage.End:
-                    string licensepath = Path.Combine(StaticData.PluginsDir, "LICENSE");
-                    File.Move(licensepath, Path.Combine(StaticData.PluginsDir, plgid + "_LICENSE"));
-                    break;
-            }
+            StageWorker();
         }
 
         private void cancel_Click(object sender, EventArgs e)
@@ -98,21 +72,159 @@ namespace craftersmine.LiteScript.Ide.PluginManager
         {
             if (acceptAgreement.Checked)
             {
-                ok.Enabled = false;
-                cancel.Enabled = false;
-                license.Visible = false;
-                progress.Value = 50;
-                stg = Stage.End;
-                button1_Click(null, null);
+                ok.Enabled = true;
+                cancel.Enabled = true;
+                progress.Value = 45;
+                stg = Stage.LicenseAgreed;
             }
             else
             {
                 ok.Enabled = false;
                 cancel.Enabled = true;
-                license.Visible = false;
-                progress.Visible = false;
-                status.Text = "{LICENSE_DISAGREED}";
-                stg = Stage.Cancel;
+            }
+        }
+
+        private void StageWorker()
+        {
+            switch (stg)
+            {
+                case Stage.Extracting:
+                    progress.Visible = true;
+                    status.Visible = true;
+                    status.Text = "{EXTRACTING_PLG_PKG}";
+                    progress.Value = 30;
+                    FastZip _fz = new FastZip();
+                    try
+                    {
+                        Directory.CreateDirectory(plgInstallerDir);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("{UNABLE_EXTRACT_PLG}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        Environment.Exit(0);
+                    }
+                    string pack = Path.Combine(StaticData.InstallerDir, filepath);
+                    _fz.ExtractZip(pack, plgInstallerDir, null);
+                    richTextBox1.LoadFile(Path.Combine(plgInstallerDir, "LICENSE"), RichTextBoxStreamType.PlainText);
+                    license.Visible = true;
+                    stg = Stage.LicenseAgreement;
+                    StageWorker();
+                    break;
+                case Stage.Install:
+                    progress.Visible = true;
+                    status.Visible = true;
+                    ok.Enabled = false;
+                    cancel.Enabled = false;
+                    license.Visible = false;
+                    _packagecontents_file = new IniDocument(Path.Combine(plgInstallerDir, "package-contents.pkginf"));
+                    progress.Value = 50;
+                    if (_packagecontents_file.Sections["Package"].Contains("plugin-lib") && _packagecontents_file.Sections["Package"].Contains("referenced-libs") && _packagecontents_file.Sections["Package"].Contains("plugin-id"))
+                        _isValid_packageContents = true;
+                    else _isValid_packageContents = false;
+
+                    if (_isValid_packageContents)
+                    {
+                        string plglib = _packagecontents_file.Sections["Package"].GetValue("plugin-lib");
+                        string reflibs = _packagecontents_file.Sections["Package"].GetValue("referenced-libs");
+                        string plgid = _packagecontents_file.Sections["Package"].GetValue("plugin-id");
+
+                        string[] reflibsarr = null;
+                        bool _isRefLibsExists = false;
+                        if (reflibs != "none")
+                        {
+                            reflibsarr = reflibs.Split('|');
+                            _isRefLibsExists = true;
+                        }
+                        else
+                            _isRefLibsExists = false;
+                        try
+                        {
+                            status.Text = "{INSTALLING_MAIN_LIB}";
+                            if (!File.Exists(Path.Combine(StaticData.PluginsDir, plglib)))
+                                File.Move(Path.Combine(plgInstallerDir, plglib), Path.Combine(StaticData.PluginsDir, plglib));
+                            else
+                            {
+                                File.Delete(Path.Combine(StaticData.PluginsDir, plglib));
+                                File.Move(Path.Combine(plgInstallerDir, plglib), Path.Combine(StaticData.PluginsDir, plglib));
+                            }
+                            progress.Value = 60;
+                            if (_isRefLibsExists)
+                                foreach (string lib in reflibsarr)
+                                {
+                                    status.Text = "{INSTALLING_LIB}: " + lib;
+                                    if (!File.Exists(Path.Combine(StaticData.PluginsDir, lib)))
+                                        File.Move(Path.Combine(plgInstallerDir, lib), Path.Combine(StaticData.PluginsDir, lib));
+                                    else
+                                    {
+                                        File.Delete(Path.Combine(StaticData.PluginsDir, lib));
+                                        File.Move(Path.Combine(plgInstallerDir, lib), Path.Combine(StaticData.PluginsDir, lib));
+                                    }
+                                    progress.Value++;
+                                }
+                            if (!Directory.Exists(Path.Combine(StaticData.PluginsDir, plgid + "_Res")))
+                                Directory.Move(Path.Combine(plgInstallerDir, plgid + "_Res"), Path.Combine(StaticData.PluginsDir, plgid + "_Res"));
+                            else
+                            {
+                                Directory.Delete(Path.Combine(StaticData.PluginsDir, plgid + "_Res"), true);
+                                Directory.Move(Path.Combine(plgInstallerDir, plgid + "_Res"), Path.Combine(StaticData.PluginsDir, plgid + "_Res"));
+                            }
+                            progress.Value = 70;
+                            stg = Stage.End;
+                            StageWorker();
+                        }
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("{UNABLE_INSTALL_PLUGIN}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            Console.WriteLine(ex.Message + "\r\n" + ex.StackTrace );
+                            stg = Stage.End;
+                            StageWorker();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("{INVALID_PACKAGE_CONTENTS_METAFILE}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        stg = Stage.End;
+                    }
+                    break;
+                case Stage.LicenseAgreement:
+                    ok.Text = "{accept}";
+                    license.Visible = true;
+                    progress.Visible = false;
+                    status.Visible = false;
+                    ok.Enabled = false;
+                    break;
+                case Stage.End:
+                    ok.Text = "{finish}";
+                    try
+                    {
+
+                        Directory.Delete(plgInstallerDir, true);
+                        progress.Value = 80;
+                        progress.Visible = false;
+
+                        status.Text = "{INSTALLATION_COMPLETE}";
+                        ok.Enabled = true;
+                        cancel.Visible = false;
+                        _isCloseNeeded = true;
+                        stg = Stage.Close;
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
+                    break;
+                case Stage.Close:
+                    _isCloseNeeded = true;
+                    this.Close();
+                    break;
+                case Stage.Cancel:
+                    this.Close();
+                    break;
+                case Stage.LicenseAgreed:
+                    stg = Stage.Install;
+                    ok.Text = "{ok}";
+                    StageWorker();
+                    break;
             }
         }
     }
