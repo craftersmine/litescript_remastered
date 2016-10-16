@@ -220,7 +220,7 @@ namespace craftersmine.LiteScript.Ide
         {
             if (_isProjectOrScriptLoaded)
             {
-                var dlg = MessageBox.Show("{SAVE_BEFORE_QUIT}", "{INFO}", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                var dlg = MessageBox.Show(StaticData.LocaleProv.GetValue("message.save-before-quit"), StaticData.LocaleProv.GetValue("message.save-before-quit.title"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                 switch (dlg)
                 {
                     case DialogResult.Yes:
@@ -423,7 +423,7 @@ namespace craftersmine.LiteScript.Ide
         {
             if (_isProjectOrScriptLoaded)
             {
-                var dlg = MessageBox.Show("{SAVE_BEFORE_QUIT}", "{INFO}", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+                var dlg = MessageBox.Show(StaticData.LocaleProv.GetValue("message.save-before-quit"), StaticData.LocaleProv.GetValue("message.save-before-quit.title"), MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
                 switch (dlg)
                 {
                     case DialogResult.Yes:
@@ -554,7 +554,7 @@ namespace craftersmine.LiteScript.Ide
 
         private void LoadLocales()
         {
-            DebugLogger.Write("INFO", "Applying locales for form " + nameof(MainForm));
+            StaticData.DebugLogger.Log("INFO", "Applying locales for form " + nameof(MainForm));
             Text = "LiteScript IDE version 1.0";
             #region =============== File menu =================
 
@@ -728,29 +728,29 @@ namespace craftersmine.LiteScript.Ide
         // Run, load, stop
         public void LoadPlugins()
         {
-            DebugLogger.Write("PLGLDR\\INFO", "Loading plugins...");
+            StaticData.DebugLogger.Log("PLGLDR\\INFO", "Loading plugins...");
             _pl = new PluginLoader();
             _pl.ScanPlugins(Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScriptIDE", "Plugins"));
             StaticData.Plugins = new Dictionary<bool, IIdePlugin>();
 
             if (_pl.Plugins.Count < 1)
             {
-                DebugLogger.Write("PLGLDR\\INFO", "No plugins found! Skipping all plugins load, run and stop operations!");
+                StaticData.DebugLogger.Log("PLGLDR\\INFO", "No plugins found! Skipping all plugins load, run and stop operations!");
                 return;
             }
             foreach (var plugin in _pl.Plugins)
             {
-                DebugLogger.Write("PLGLDR\\INFO", "Loading plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
+                StaticData.DebugLogger.Log("PLGLDR\\INFO", "Loading plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
                 try
                 {
                     plugin.OnStart();
                     StaticData.Plugins.Add(true, plugin);
-                    DebugLogger.Write("PLGLDR\\FINE", "Loaded plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
+                    StaticData.DebugLogger.Log("PLGLDR\\FINE", "Loaded plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
                 }
                 catch
                 {
                     StaticData.Plugins.Add(false, plugin);
-                    DebugLogger.Write("PLGLDR\\SEVERE", "Failed to load plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
+                    StaticData.DebugLogger.Log("PLGLDR\\SEVERE", "Failed to load plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
                 }
             }
         }
@@ -762,13 +762,13 @@ namespace craftersmine.LiteScript.Ide
                 if (plugin.Key)
                     try
                     {
-                        DebugLogger.Write("PLGLDR\\INFO", "Activating plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
+                        StaticData.DebugLogger.Log("PLGLDR\\INFO", "Activating plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
                         plugin.Value.OnRunning(this);
-                        DebugLogger.Write("PLGLDR\\FINE", "Activated plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
+                        StaticData.DebugLogger.Log("PLGLDR\\FINE", "Activated plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
                     }
                     catch
                     {
-                        DebugLogger.Write("PLGLDR\\SEVERE", "Failed to activate plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
+                        StaticData.DebugLogger.Log("PLGLDR\\SEVERE", "Failed to activate plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
                     }
             }
         }
@@ -780,13 +780,13 @@ namespace craftersmine.LiteScript.Ide
                 if (plugin.Key)
                     try
                     {
-                        DebugLogger.Write("PLGLDR\\INFO", "Stopping plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
+                        StaticData.DebugLogger.Log("PLGLDR\\INFO", "Stopping plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
                         plugin.Value.OnStop();
-                        DebugLogger.Write("PLGLDR\\FINE", "Stopped plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
+                        StaticData.DebugLogger.Log("PLGLDR\\FINE", "Stopped plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString());
                     }
                     catch
                     {
-                        DebugLogger.Write("PLGLDR\\SEVERE", "Failed to stop plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString() + " Plugin data may be corrupted!");
+                        StaticData.DebugLogger.Log("PLGLDR\\SEVERE", "Failed to stop plugin - " + plugin.Value.Id + " version: " + plugin.Value.Version.ToString() + " Plugin data may be corrupted!");
                     }
             }
         }

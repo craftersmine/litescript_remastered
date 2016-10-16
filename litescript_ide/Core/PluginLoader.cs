@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using craftersmine.LiteScript.Api;
 using System.IO;
+using craftersmine.LiteScript.Ide.Core.Data;
 
 namespace craftersmine.LiteScript.Ide.Core
 {
@@ -26,7 +27,7 @@ namespace craftersmine.LiteScript.Ide.Core
                             Plugins.Add(ass.CreateInstance(type.FullName) as IIdePlugin);
                     }
                 }
-                catch { DebugLogger.Write("PLGLDR\\ERROR", "Cannot load " + file + " as plugin!"); }
+                catch { StaticData.DebugLogger.Log("PLGLDR\\ERROR", "Cannot load " + file + " as plugin!"); }
         }
     }
 }

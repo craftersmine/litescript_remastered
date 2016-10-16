@@ -22,12 +22,12 @@ namespace craftersmine.LiteScript.Ide
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
-                DebugLogger.Write("INFO", "Setting app root...");
-                StaticData.AppRoot = Application.StartupPath + "\\";
-                DebugLogger.Write("INFO", "Loading settings...");
-                StaticData.AppSettings = new Properties.Settings();
-                DebugLogger.Write("INFO", "Setting app-data...");
                 StaticData.AppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScriptIDE");
+                StaticData.DebugLogger = new Logger("IDE");
+                StaticData.DebugLogger.Log("INFO", "Setting app root...");
+                StaticData.AppRoot = Application.StartupPath + "\\";
+                StaticData.DebugLogger.Log("INFO", "Loading settings...");
+                StaticData.AppSettings = new Properties.Settings();
                 if (StaticData.AppSettings.ProjectsPath == string.Empty)
                 {
                     StaticData.AppSettings.ProjectsPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
@@ -39,18 +39,20 @@ namespace craftersmine.LiteScript.Ide
                     Directory.CreateDirectory(Path.Combine(StaticData.AppData, "Plugins"));
                     Directory.CreateDirectory(Path.Combine(StaticData.AppData, "Plugins\\Installer"));
                 }
-                DebugLogger.Write("INFO", "Loading localization provider...");
+                StaticData.DebugLogger.Log("INFO", "Loading localization provider...");
                 StaticData.LocaleProv = new LocalizationProvider(StaticData.AppRoot + "\\Locales\\" + StaticData.AppSettings.Locale + ".lang");
-                DebugLogger.Write("INFO", "Running app...");
+                StaticData.DebugLogger.Log("INFO", "Running app...");
                 Application.Run(new MainForm());
             }
             catch (Exception ex)
             {
                 string[] texts = { "God, I feel bad", "Who is crashed me?", "Oh.. Great, I lose all your work", "Ok, I crashed! You will not mind if I'm going to fold all the settings?", "Do not worry, here's cookies" };
-                DebugLogger.Write("ERROR", "A Fatal Error has occured! Application was crashed and reset all settings to Default, we are dont know why that happened, but we can send log from your Desktop at support@litescript.hol.es");
-                MessageBox.Show("A Fatal Error has occured!\r\n\r\nApplication was crashed and reset all settings to Default, we are dont know why that happened, but you can send log from your Desktop at support@litescript.hol.es", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 int rnd = new Random().Next(texts.Length);
                 string log = string.Format("========= LiteScript IDE Crashlog =========\r\n\r\n{4}\r\n\r\nMessage: {0}\r\nInner Exception: {1}\r\nSource module: {2}\r\n\r\nStack Trace:\r\n{3}\r\n\r\nPlease send this log at support@litescript.hol.es. This will solve the problem faster!", ex.Message, ex.InnerException, ex.Source, ex.StackTrace, texts[rnd]);
+
+                StaticData.DebugLogger.Log("ERROR", log);
+                MessageBox.Show("A Fatal Error has occured!\r\n\r\nApplication was crashed and reset all settings to Default, we are dont know why that happened, but you can send log from your Desktop at support@litescript.hol.es", "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                
                 string logPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.DesktopDirectory), "litescript-crashlog-" + DateTime.Now.ToString().Replace(':', '-').Replace(' ', '_') + ".log");
                 File.WriteAllText(logPath, log);
                 StaticData.AppSettings.Locale = "Russian";
