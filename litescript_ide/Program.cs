@@ -23,6 +23,7 @@ namespace craftersmine.LiteScript.Ide
             try
             {
                 StaticData.AppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScriptIDE");
+                Directory.Delete(Path.Combine(StaticData.AppData, "Logs"), true);
                 StaticData.DebugLogger = new Logger("IDE");
                 StaticData.DebugLogger.Log("INFO", "Setting app root...");
                 StaticData.AppRoot = Application.StartupPath + "\\";
