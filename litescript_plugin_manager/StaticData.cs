@@ -11,5 +11,6 @@ namespace craftersmine.LiteScript.Ide.PluginManager
         public static string AppData { get; set; }
         public static string PluginsDir { get; set; }
         public static string InstallerDir { get; set; }
+        public static LocalizerLib.LocalizationProvider LocaleProv { get; set; }
     }
 }

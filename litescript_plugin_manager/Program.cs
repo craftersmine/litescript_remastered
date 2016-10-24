@@ -1,4 +1,5 @@
-﻿using System;
+﻿using craftersmine.LocalizerLib;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -20,14 +21,20 @@ namespace craftersmine.LiteScript.Ide.PluginManager
             StaticData.AppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScriptIDE");
             StaticData.InstallerDir = Path.Combine(StaticData.AppData, "Plugins\\Installer");
             StaticData.PluginsDir = Path.Combine(StaticData.AppData, "Plugins");
+
+            string _currlocale = File.ReadAllText(Path.Combine(StaticData.AppData, "Locales\\currentlocale.setting"));
+            string _path = Path.Combine(StaticData.AppData, "Locales\\" + _currlocale + ".lang");
+            StaticData.LocaleProv = new LocalizationProvider(_path);
             Dictionary<string, string> _args = new Dictionary<string, string>();
             try
             {
-                Directory.Delete(StaticData.InstallerDir, true);
+                if (Directory.Exists(StaticData.InstallerDir))
+                    Directory.Delete(StaticData.InstallerDir, true);
+                Directory.CreateDirectory(StaticData.InstallerDir);
             }
             catch
             {
-                MessageBox.Show("{UNABLE_CLEAR_INSTALLER_DIR}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(StaticData.LocaleProv.GetValue("app.pluginmanager.install-wizard.status.failed-clean-temp-dir"), StaticData.LocaleProv.GetValue("messages.titles.error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
                 Environment.Exit(0);
             }
             foreach(var arg in args)
@@ -49,7 +56,7 @@ namespace craftersmine.LiteScript.Ide.PluginManager
                     if (_args["do"].ToLower() == "remove")
                         Application.Run(new Remove(_args["id"]));
                 }
-                else { MessageBox.Show("{YOU_NOT_SET_ARGS}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error); Environment.Exit(0); }
+                else { MessageBox.Show(StaticData.LocaleProv.GetValue("app.pluginmanager.install-wizard.status.no-correct-set-arguments"), StaticData.LocaleProv.GetValue("messages.titles.error"), MessageBoxButtons.OK, MessageBoxIcon.Error); Environment.Exit(0); }
             }
             catch (Exception ex)
             { //MessageBox.Show("{YOU_NOT_SET_ARGS}", "{ERROR}", MessageBoxButtons.OK, MessageBoxIcon.Error); Environment.Exit(0);

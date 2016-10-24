@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Install));
             this.ok = new System.Windows.Forms.Button();
             this.cancel = new System.Windows.Forms.Button();
             this.tip = new System.Windows.Forms.Label();
@@ -82,10 +83,9 @@
             // 
             // status
             // 
-            this.status.AutoSize = true;
             this.status.Location = new System.Drawing.Point(12, 273);
             this.status.Name = "status";
-            this.status.Size = new System.Drawing.Size(43, 13);
+            this.status.Size = new System.Drawing.Size(426, 13);
             this.status.TabIndex = 4;
             this.status.Text = "{status}";
             this.status.Visible = false;
@@ -144,10 +144,11 @@
             this.Controls.Add(this.ok);
             this.Controls.Add(this.license);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Install";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "LiteScript Plugin Manager";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Install_FormClosing);
             this.license.ResumeLayout(false);
             this.license.PerformLayout();
