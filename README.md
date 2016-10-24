@@ -1,7 +1,7 @@
 # Litescript Remastered
 My attempt to create simple programming language
 
-[Official Site (Russian)](http://litescript.hol.es/, "Official Site")
+[Official Site (Russian)](http://litescript.hol.es/ "Official Site")
 
 ### Languages issues
 This software from russian developer and may have some translation errors. You can contact with me to give me some changes
