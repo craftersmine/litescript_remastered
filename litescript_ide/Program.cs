@@ -16,14 +16,24 @@ namespace craftersmine.LiteScript.Ide
         /// Главная точка входа для приложения.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             try
             {
                 StaticData.AppData = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScriptIDE");
-                Directory.Delete(Path.Combine(StaticData.AppData, "Logs"), true);
+                StaticData.RunFilepath = "";
+                foreach (var arg in args)
+                {
+                    string[] arg_splt = arg.Split('=');
+                    if (arg_splt[0] == "-file")
+                        StaticData.RunFilepath = arg_splt[1];
+                    else StaticData.RunFilepath = "";
+                }
+                if(Directory.Exists(Path.Combine(StaticData.AppData, "Logs")))
+                    Directory.Delete(Path.Combine(StaticData.AppData, "Logs"), true);
+                Directory.CreateDirectory(Path.Combine(StaticData.AppData, "Logs"));
                 StaticData.DebugLogger = new Logger("IDE");
                 StaticData.DebugLogger.Log("INFO", "Setting app root...");
                 StaticData.AppRoot = Application.StartupPath + "\\";
@@ -38,10 +48,12 @@ namespace craftersmine.LiteScript.Ide
                 {
                     Directory.CreateDirectory(Path.Combine(StaticData.AppData, "Logs"));
                     Directory.CreateDirectory(Path.Combine(StaticData.AppData, "Plugins"));
+                    Directory.CreateDirectory(Path.Combine(StaticData.AppData, "Locales"));
                     Directory.CreateDirectory(Path.Combine(StaticData.AppData, "Plugins\\Installer"));
                 }
                 StaticData.DebugLogger.Log("INFO", "Loading localization provider...");
-                StaticData.LocaleProv = new LocalizationProvider(StaticData.AppRoot + "\\Locales\\" + StaticData.AppSettings.Locale + ".lang");
+                StaticData.LocaleProv = new LocalizationProvider(StaticData.AppData + "\\Locales\\" + StaticData.AppSettings.Locale + ".lang");
+                File.WriteAllText(Path.Combine(StaticData.AppData, "Locales\\currentlocale.setting"), StaticData.AppSettings.Locale);
                 StaticData.DebugLogger.Log("INFO", "Running app...");
                 Application.Run(new MainForm());
             }

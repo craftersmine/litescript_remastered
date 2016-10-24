@@ -16,5 +16,6 @@ namespace craftersmine.LiteScript.Ide.Core.Data
         public static Dictionary<bool, IIdePlugin> Plugins { get; set; }
         public static string AppData { get; set; }
         public static Logger DebugLogger { get; set; }
+        public static string RunFilepath { get; set; }
     }
 }

@@ -784,7 +784,7 @@
             this.toolStrip3.Location = new System.Drawing.Point(194, 0);
             this.toolStrip3.Name = "toolStrip3";
             this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip3.Size = new System.Drawing.Size(119, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(88, 25);
             this.toolStrip3.TabIndex = 2;
             // 
             // runBtn
@@ -855,6 +855,7 @@
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.toolStripContainer1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

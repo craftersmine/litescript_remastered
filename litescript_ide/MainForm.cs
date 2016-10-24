@@ -44,6 +44,32 @@ namespace craftersmine.LiteScript.Ide
             LoadLocales();
             RunPlugins();
             LoadIconset();
+            if (StaticData.RunFilepath != "")
+            {
+                if (StaticData.RunFilepath.EndsWith("lsproj"))
+                {
+                    _isProject = true;
+                    Opener.OpenProject(StaticData.RunFilepath);
+                    StaticData.CurrentProject = _currProj;
+                    editorBox.Text = _currProj.FileContents;
+                    welcomePanel.Visible = false;
+                    editorPanel.Visible = true;
+                    UnlockAll();
+                }
+                else if (StaticData.RunFilepath.EndsWith("litescript"))
+                {
+                    _isProject = false;
+                    _scriptPath = StaticData.RunFilepath;
+                    editorBox.Text = Opener.OpenScript(StaticData.RunFilepath);
+                    welcomePanel.Visible = false;
+                    editorPanel.Visible = true;
+                    UnlockAll();
+                }
+                else
+                {
+                    MessageBox.Show(StaticData.LocaleProv.GetValue("messages.errors.unknown-filetype"), StaticData.LocaleProv.GetValue("messages.titles.error"), MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void Builder_OnBuildRunningEvent(object sender, OnBuildRunningEventArgs e)
