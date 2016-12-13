@@ -222,30 +222,28 @@ namespace craftersmine.LiteScript.Ide.PluginManager
                     ok.Text = _l_accept;
                     license.Visible = true;
                     progress.Visible = false;
-                    status.Visible = false;
                     ok.Enabled = false;
                     break;
                 case Stage.End:
                     ok.Text = _l_finish;
                     tip.Text = _localeprov.GetValue("app.pluginmanager.install-wizard.tip.installation-complete");
                     try
-                    {
-
+                    { 
                         Directory.Delete(plgInstallerDir, true);
-                        progress.Value = 80;
-                        progress.Visible = false;
-                        if (_isSuccessful)
-                            status.Text = _localeprov.GetValue("app.pluginmanager.install-wizard.status.installation-successful-completed");
-                        else _localeprov.GetValue("app.pluginmanager.install-wizard.status.installation-failed");
-                        ok.Enabled = true;
-                        cancel.Visible = false;
-                        _isCloseNeeded = true;
-                        stg = Stage.Close;
                     }
                     catch (Exception ex)
                     {
 
                     }
+                    progress.Value = 80;
+                    progress.Visible = false;
+                    if (_isSuccessful)
+                        status.Text = _localeprov.GetValue("app.pluginmanager.install-wizard.status.installation-successful-completed");
+                    else _localeprov.GetValue("app.pluginmanager.install-wizard.status.installation-failed");
+                    ok.Enabled = true;
+                    cancel.Visible = false;
+                    _isCloseNeeded = true;
+                    stg = Stage.Close;
                     break;
                 case Stage.Close:
                     _isCloseNeeded = true;
