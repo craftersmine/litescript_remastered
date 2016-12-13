@@ -5,12 +5,12 @@ using System.Runtime.InteropServices;
 // Управление общими сведениями о сборке осуществляется с помощью 
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("litescript_plugin_manager")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("LiteScript Plugin Manager")]
+[assembly: AssemblyDescription("Provides plugin installer and remover")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("litescript_plugin_manager")]
-[assembly: AssemblyCopyright("Copyright ©  2016")]
+[assembly: AssemblyCompany("craftersmine")]
+[assembly: AssemblyProduct("LiteScript Plugin Manager")]
+[assembly: AssemblyCopyright("Copyright © craftersmine 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // Можно задать все значения или принять номера сборки и редакции по умолчанию 
 // используя "*", как показано ниже:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.2.0.38")]
-[assembly: AssemblyFileVersion("1.2.0.38")]
+[assembly: AssemblyVersion("1.2.1.49")]
+[assembly: AssemblyFileVersion("1.2.1.49")]
