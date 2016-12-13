@@ -7,6 +7,7 @@ using craftersmine.LiteScript.Compiler.Core;
 using craftersmine.LiteScript.Compiler.Init;
 using System.Diagnostics;
 using System.IO;
+using System.Runtime.InteropServices;
 
 namespace craftersmine.LiteScript.Compiler
 {
@@ -84,7 +85,9 @@ namespace craftersmine.LiteScript.Compiler
                             .Replace("litescript", "cs");
                 string exeF = csF.Replace("cs", "exe");
                 psi.Arguments = string.Format(@"/out:{0} /t:{1} {2}", exeF, _outt, csF);
-                psi.FileName = @"C:\Windows\Microsoft.NET\Framework\v4.0.30319\csc.exe";
+                var frameworkPath = RuntimeEnvironment.GetRuntimeDirectory();
+                var cscPath = Path.Combine(frameworkPath, "csc.exe");
+                psi.FileName = cscPath;
                 psi.RedirectStandardOutput = true;
                 psi.UseShellExecute = false;
                 Process proc = new Process();
