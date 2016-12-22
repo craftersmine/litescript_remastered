@@ -87,17 +87,17 @@
             this.newLink = new System.Windows.Forms.LinkLabel();
             this.open24 = new System.Windows.Forms.PictureBox();
             this.openLink = new System.Windows.Forms.LinkLabel();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.mainTools = new System.Windows.Forms.ToolStrip();
             this.openBtn = new System.Windows.Forms.ToolStripButton();
             this.saveBtn = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.undoBtn = new System.Windows.Forms.ToolStripButton();
             this.redoBtn = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip2 = new System.Windows.Forms.ToolStrip();
+            this.editTools = new System.Windows.Forms.ToolStrip();
             this.copyBtn = new System.Windows.Forms.ToolStripButton();
             this.cutBtn = new System.Windows.Forms.ToolStripButton();
             this.pasteBtn = new System.Windows.Forms.ToolStripButton();
-            this.toolStrip3 = new System.Windows.Forms.ToolStrip();
+            this.execTools = new System.Windows.Forms.ToolStrip();
             this.runBtn = new System.Windows.Forms.ToolStripButton();
             this.buildBtn = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -116,9 +116,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.doc24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.new24)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.open24)).BeginInit();
-            this.toolStrip1.SuspendLayout();
-            this.toolStrip2.SuspendLayout();
-            this.toolStrip3.SuspendLayout();
+            this.mainTools.SuspendLayout();
+            this.editTools.SuspendLayout();
+            this.execTools.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -481,9 +481,9 @@
             // toolStripContainer1.TopToolStripPanel
             // 
             this.toolStripContainer1.TopToolStripPanel.BackColor = System.Drawing.Color.White;
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip1);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip2);
-            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.toolStrip3);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.mainTools);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.editTools);
+            this.toolStripContainer1.TopToolStripPanel.Controls.Add(this.execTools);
             this.toolStripContainer1.TopToolStripPanel.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             // 
             // editorPanel
@@ -495,7 +495,7 @@
             this.editorPanel.Controls.Add(this.editorBox);
             this.editorPanel.Location = new System.Drawing.Point(0, 0);
             this.editorPanel.Name = "editorPanel";
-            this.editorPanel.Size = new System.Drawing.Size(1091, 710);
+            this.editorPanel.Size = new System.Drawing.Size(1091, 685);
             this.editorPanel.TabIndex = 2;
             this.editorPanel.Visible = false;
             // 
@@ -531,7 +531,7 @@
             this.editorBox.Paddings = new System.Windows.Forms.Padding(0);
             this.editorBox.SelectionColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(30)))), ((int)(((byte)(144)))), ((int)(((byte)(255)))));
             this.editorBox.ServiceColors = ((FastColoredTextBoxNS.ServiceColors)(resources.GetObject("editorBox.ServiceColors")));
-            this.editorBox.Size = new System.Drawing.Size(1091, 710);
+            this.editorBox.Size = new System.Drawing.Size(1091, 685);
             this.editorBox.TabIndex = 0;
             this.editorBox.Zoom = 100;
             // 
@@ -552,7 +552,7 @@
             this.welcomePanel.Controls.Add(this.openLink);
             this.welcomePanel.Location = new System.Drawing.Point(0, 0);
             this.welcomePanel.Name = "welcomePanel";
-            this.welcomePanel.Size = new System.Drawing.Size(1091, 710);
+            this.welcomePanel.Size = new System.Drawing.Size(1091, 685);
             this.welcomePanel.TabIndex = 0;
             // 
             // webLink
@@ -663,21 +663,21 @@
             this.openLink.VisitedLinkColor = System.Drawing.Color.RoyalBlue;
             this.openLink.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.openLink_LinkClicked);
             // 
-            // toolStrip1
+            // mainTools
             // 
-            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip1.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mainTools.BackColor = System.Drawing.Color.Transparent;
+            this.mainTools.Dock = System.Windows.Forms.DockStyle.None;
+            this.mainTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openBtn,
             this.saveBtn,
             this.toolStripSeparator1,
             this.undoBtn,
             this.redoBtn});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 0);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip1.Size = new System.Drawing.Size(110, 25);
-            this.toolStrip1.TabIndex = 0;
+            this.mainTools.Location = new System.Drawing.Point(3, 0);
+            this.mainTools.Name = "mainTools";
+            this.mainTools.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.mainTools.Size = new System.Drawing.Size(110, 25);
+            this.mainTools.TabIndex = 0;
             // 
             // openBtn
             // 
@@ -727,19 +727,19 @@
             this.redoBtn.Text = "{redo}";
             this.redoBtn.Click += new System.EventHandler(this.redoMenu_Click);
             // 
-            // toolStrip2
+            // editTools
             // 
-            this.toolStrip2.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip2.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.editTools.BackColor = System.Drawing.Color.Transparent;
+            this.editTools.Dock = System.Windows.Forms.DockStyle.None;
+            this.editTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyBtn,
             this.cutBtn,
             this.pasteBtn});
-            this.toolStrip2.Location = new System.Drawing.Point(113, 0);
-            this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip2.Size = new System.Drawing.Size(81, 25);
-            this.toolStrip2.TabIndex = 1;
+            this.editTools.Location = new System.Drawing.Point(113, 0);
+            this.editTools.Name = "editTools";
+            this.editTools.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.editTools.Size = new System.Drawing.Size(81, 25);
+            this.editTools.TabIndex = 1;
             // 
             // copyBtn
             // 
@@ -774,18 +774,18 @@
             this.pasteBtn.Text = "{paste}";
             this.pasteBtn.Click += new System.EventHandler(this.pasteMenu_Click);
             // 
-            // toolStrip3
+            // execTools
             // 
-            this.toolStrip3.BackColor = System.Drawing.Color.Transparent;
-            this.toolStrip3.Dock = System.Windows.Forms.DockStyle.None;
-            this.toolStrip3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.execTools.BackColor = System.Drawing.Color.Transparent;
+            this.execTools.Dock = System.Windows.Forms.DockStyle.None;
+            this.execTools.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.runBtn,
             this.buildBtn});
-            this.toolStrip3.Location = new System.Drawing.Point(194, 0);
-            this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStrip3.Size = new System.Drawing.Size(88, 25);
-            this.toolStrip3.TabIndex = 2;
+            this.execTools.Location = new System.Drawing.Point(194, 0);
+            this.execTools.Name = "execTools";
+            this.execTools.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.execTools.Size = new System.Drawing.Size(119, 25);
+            this.execTools.TabIndex = 2;
             // 
             // runBtn
             // 
@@ -876,12 +876,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.doc24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.new24)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.open24)).EndInit();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
-            this.toolStrip2.ResumeLayout(false);
-            this.toolStrip2.PerformLayout();
-            this.toolStrip3.ResumeLayout(false);
-            this.toolStrip3.PerformLayout();
+            this.mainTools.ResumeLayout(false);
+            this.mainTools.PerformLayout();
+            this.editTools.ResumeLayout(false);
+            this.editTools.PerformLayout();
+            this.execTools.ResumeLayout(false);
+            this.execTools.PerformLayout();
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -893,17 +893,17 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripContainer toolStripContainer1;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip mainTools;
         private System.Windows.Forms.ToolStripButton openBtn;
         private System.Windows.Forms.ToolStripButton saveBtn;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton undoBtn;
         private System.Windows.Forms.ToolStripButton redoBtn;
-        private System.Windows.Forms.ToolStrip toolStrip2;
+        private System.Windows.Forms.ToolStrip editTools;
         private System.Windows.Forms.ToolStripButton cutBtn;
         private System.Windows.Forms.ToolStripButton copyBtn;
         private System.Windows.Forms.ToolStripButton pasteBtn;
-        private System.Windows.Forms.ToolStrip toolStrip3;
+        private System.Windows.Forms.ToolStrip execTools;
         private System.Windows.Forms.ToolStripButton runBtn;
         private System.Windows.Forms.ToolStripButton buildBtn;
         private System.Windows.Forms.StatusStrip statusStrip1;
