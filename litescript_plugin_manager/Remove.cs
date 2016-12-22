@@ -33,6 +33,7 @@ namespace craftersmine.LiteScript.Ide.PluginManager
         private string _l_finish;
 
         private bool _isSuccessful = true;
+        private bool _isRefLibsExists = false;
 
         public Remove(string id)
         {
@@ -48,7 +49,11 @@ namespace craftersmine.LiteScript.Ide.PluginManager
                 IniDocument _ini = new IniDocument(metafile);
                 pluginname = _ini.Sections["Package"].GetValue("plugin-name");
                 mainlib = _ini.Sections["Package"].GetValue("plugin-lib");
-                reflibs = _ini.Sections["Package"].GetValue("referenced-libs").Split('|');
+                if (_ini.Sections["Package"].GetValue("referenced-libs") != "none")
+                {
+                    reflibs = _ini.Sections["Package"].GetValue("referenced-libs").Split('|');
+                    _isRefLibsExists = true;
+                }
 
                 plugin_name.Text = pluginname;
             }
@@ -72,10 +77,13 @@ namespace craftersmine.LiteScript.Ide.PluginManager
                     status.Text = _lprov.GetValue("app.pluginmanager.remove-wizard.status.collecting-data");
                     _files.Add(Path.Combine(StaticData.PluginsDir, mainlib));
                     progress.Value = 10;
-                    foreach (var lib in reflibs)
+                    if (_isRefLibsExists)
                     {
-                        _files.Add(Path.Combine(StaticData.PluginsDir, lib));
-                        progress.Value++;
+                        foreach (var lib in reflibs)
+                        {
+                            _files.Add(Path.Combine(StaticData.PluginsDir, lib));
+                            progress.Value++;
+                        }
                     }
                     _files.Add(_metafile);
                     _resDir = Path.Combine(StaticData.PluginsDir, _id + "_Res");
