@@ -75,9 +75,9 @@
             this.label1.ForeColor = System.Drawing.Color.DimGray;
             this.label1.Location = new System.Drawing.Point(98, 28);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(83, 13);
+            this.label1.Size = new System.Drawing.Size(92, 13);
             this.label1.TabIndex = 4;
-            this.label1.Text = "version 1.0 beta";
+            this.label1.Text = "version 1.3.2 beta";
             // 
             // label3
             // 
