@@ -40,7 +40,6 @@ namespace craftersmine.LiteScript.Ide
             Builder.OnBuildCompletedEvent += Builder_OnBuildCompletedEvent;
             Builder.OnBuildRunningEvent += Builder_OnBuildRunningEvent;
             LoadSyntaxHl();
-            // LOCALE: Realize locale load for MainForm
             LoadLocales();
             RunPlugins();
             LoadIconset();
@@ -773,10 +772,10 @@ namespace craftersmine.LiteScript.Ide
                     StaticData.Plugins.Add(true, plugin);
                     StaticData.DebugLogger.Log("PLGLDR\\FINE", "Loaded plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
                 }
-                catch
+                catch (Exception ex)
                 {
                     StaticData.Plugins.Add(false, plugin);
-                    StaticData.DebugLogger.Log("PLGLDR\\SEVERE", "Failed to load plugin - " + plugin.Id + " version: " + plugin.Version.ToString());
+                    StaticData.DebugLogger.Log("PLGLDR\\SEVERE", "Failed to load plugin - " + plugin.Id + " version: " + plugin.Version.ToString() + "\r\nMessage: " + ex.Message + "\r\nStackTrace: \r\n" + ex.StackTrace);
                 }
             }
         }
