@@ -37,7 +37,7 @@ namespace craftersmine.LiteScript.Ide.Forms
             browse.Image = Image.FromFile(StaticData.AppRoot + "res\\iconsets\\" + StaticData.AppSettings.IconSet + "\\browse.png");
 
             // === Load ===
-            foreach (var fl in Directory.EnumerateFiles(Path.Combine(StaticData.AppRoot, "locales"), "*.lang"))
+            foreach (var fl in Directory.EnumerateFiles(Path.Combine(StaticData.AppData, "Locales"), "*.lang"))
             {
                 langs.Items.Add(Path.GetFileNameWithoutExtension(fl));
             }
