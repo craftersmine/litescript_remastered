@@ -7,11 +7,18 @@ using System.IO;
 
 namespace craftersmine.LiteScript.Api
 {
+    /// <summary>
+    /// Represents a logger. This class cannot be inherited
+    /// </summary>
     public sealed class Logger
     {
         private string _loadTime;
         private string _file;
 
+        /// <summary>
+        /// Constructs a new <see cref="Logger"/> object
+        /// </summary>
+        /// <param name="name">Log name</param>
         public Logger(string name)
         {
             string directory = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), "LiteScriptIDE", "Logs");
@@ -24,6 +31,11 @@ namespace craftersmine.LiteScript.Api
             File.WriteAllText(_file, "");
         }
 
+        /// <summary>
+        /// Adds a line in file
+        /// </summary>
+        /// <param name="prefix">Out prefix</param>
+        /// <param name="contents">Out contents</param>
         public void Log(string prefix, string contents)
         {
             string _date;

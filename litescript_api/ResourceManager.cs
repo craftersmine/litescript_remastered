@@ -6,13 +6,29 @@ using System.Text;
 
 namespace craftersmine.LiteScript.Api
 {
+    /// <summary>
+    /// Represents plugin resource manager. This class cannot be inherited
+    /// </summary>
 	public sealed class ResourceManager
 	{
         private Logger _resLogger;
+        /// <summary>
+        /// Plugin ID
+        /// </summary>
         public string PluginID { get; private set; }
+        /// <summary>
+        /// Resource dictionary in <see cref="string"/>, <see cref="byte"/>[] format
+        /// </summary>
 		public Dictionary<string, byte[]> Resources { get; private set; } = new Dictionary<string, byte[]>();
+        /// <summary>
+        /// Resources root directory
+        /// </summary>
 		public string ResourcesRoot { get; private set; }
 		
+        /// <summary>
+        /// Constructs a new <see cref="ResourceManager"/> object
+        /// </summary>
+        /// <param name="pluginId">Plugin ID</param>
 		public ResourceManager(string pluginId)
 		{
             _resLogger = new Logger("ResourceManagerLog");
@@ -36,6 +52,12 @@ namespace craftersmine.LiteScript.Api
 			}
 		}
 		
+        /// <summary>
+        /// Gets the image associated with the specified key
+        /// </summary>
+        /// <param name="resid">Resource ID (file name without extension)</param>
+        /// <param name="img">Image</param>
+        /// <returns>True if resource found, else false</returns>
 		public bool TryGetResourceAsImage(string resid, out Image img)
         {
             _resLogger.Log("INFO", "Trying get resource with id " + resid + " as image");
@@ -49,6 +71,12 @@ namespace craftersmine.LiteScript.Api
             else return false;
 		}
 
+        /// <summary>
+        /// Gets the byte array associated with the specified key
+        /// </summary>
+        /// <param name="resid">Resource ID (file name without extension)</param>
+        /// <param name="bytes">Byte array</param>
+        /// <returns>True if resource found, else false</returns>
         public bool TryGetResourceAsBytes(string resid, out byte[] bytes)
         {
             _resLogger.Log("INFO", "Trying get resource with id " + resid + " as byte array");
@@ -57,6 +85,12 @@ namespace craftersmine.LiteScript.Api
             else return false;
         }
 
+        /// <summary>
+        /// Gets the string associated with the specified key
+        /// </summary>
+        /// <param name="resid">Resource ID (file name without extension)</param>
+        /// <param name="content">String value</param>
+        /// <returns>True if resource found, else false</returns>
         public bool TryGetResourceAsString(string resid, out string content)
         {
             _resLogger.Log("INFO", "Trying get resource with id " + resid + " as string");

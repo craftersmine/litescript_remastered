@@ -6,15 +6,36 @@ using craftersmine.LocalizerLib;
 
 namespace craftersmine.LiteScript.Api
 {
+    /// <summary>
+    /// Represents a logger. This class cannot be inherited
+    /// </summary>
     public sealed class LocaleProvider
     {
         private Logger _localeLogger;
+        /// <summary>
+        /// Plugin ID
+        /// </summary>
         public string PluginID { get; private set; }
+        /// <summary>
+        /// Locales Root
+        /// </summary>
         public string LocalesRoot { get; private set; }
+        /// <summary>
+        /// Localization provider
+        /// </summary>
         public LocalizationProvider LocalizationProvider { get; private set; }
+        /// <summary>
+        /// Locale name
+        /// </summary>
         public string Locale { get; private set; }
 
-        public LocaleProvider(string pluginId, string locale)
+        /// <summary>
+        /// Constructs a new <see cref="LocaleProvider"/> object
+        /// </summary>
+        /// <param name="pluginId">Plugin ID</param>
+        /// <param name="locale">Locale name</param>
+        /// <param name="defaultLocale">Default locale name</param>
+        public LocaleProvider(string pluginId, string locale, string defaultLocale)
         {
             _localeLogger = new Logger("LocaleProvLog");
             PluginID = pluginId;
@@ -34,10 +55,16 @@ namespace craftersmine.LiteScript.Api
             catch (Exception ex)
             {
                 _localeLogger.Log("SEVERE", "Unable load resources! " + ex.Message + "\r\n" + ex.StackTrace);
-                throw new Exception("Unable load locales for plugin");
+                string _path = Path.Combine(LocalesRoot, defaultLocale + ".lang");
+                LocalizationProvider = new LocalizationProvider(_path);
             }
         }
 
+        /// <summary>
+        /// Gets a localized string associated with specified key
+        /// </summary>
+        /// <param name="key"></param>
+        /// <returns></returns>
         public string GetValue(string key)
         {
             return LocalizationProvider.GetValue(key);
