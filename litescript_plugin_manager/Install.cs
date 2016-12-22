@@ -107,7 +107,7 @@ namespace craftersmine.LiteScript.Ide.PluginManager
             {
                 case Stage.Extracting:
                     progress.Visible = true;
-                    status.Visible = true;
+                    status.Visible = false;
                     status.Text = _localeprov.GetValue("app.pluginmanager.install-wizard.status.extracting-package");
                     progress.Value = 30;
                     FastZip _fz = new FastZip();
